@@ -31,5 +31,14 @@ public:
 	Wheel *suspensionR3;
 
 	Body *body;
+
+	Body *spoilerTop1;
+	Body *spoilerTop2;
+	Body *spoilerLeft;
+	Body *spoilerRight;
+
+	Body *aerial1;
+	Body *aerial2;
+	Body *aerial3;
 };
 

@@ -29,9 +29,9 @@
 #include <stdio.h>
 #include "../resource.h" // About box resource identifiers.
 
-//#include "Rover.h"
+#include "Rover.h"
 //#include "Body.h"
-#include "Wheel.h"
+//#include "Wheel.h"
 //#include "Cylinder.h"
 
 #define glRGB(x, y, z)	glColor3ub((GLubyte)x, (GLubyte)y, (GLubyte)z)
@@ -270,8 +270,8 @@ GLfloat pos[3] = { 0,0,0 };
 
 //auto test = new Body(100, 20, 40);
 //auto testWheel = new Wheel(10, 50);
-auto testCylinder = new Cylinder(10, 50);
-//auto rover = new Rover();
+//auto testCylinder = new Cylinder(10, 50);
+auto rover = new Rover();
 //auto circle = new Circle(20, 90, Param::x);
 
 // Called to draw scene
@@ -301,7 +301,7 @@ void RenderScene(void)
 	//testWheel->draw();
 	//testCylinder->draw();
 	//circle->draw();
-	//rover->draw();
+	rover->draw();
 
 
 	/////////////////////////////////////////////////////////////////
