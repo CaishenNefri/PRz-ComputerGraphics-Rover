@@ -61,6 +61,7 @@ static GLsizei lastWidth;
 
 unsigned int dust = 0;
 
+
 unsigned int LoadTexture(const char* file, GLenum textureSlot)
 {
 	GLuint texHandle;
@@ -75,7 +76,7 @@ unsigned int LoadTexture(const char* file, GLenum textureSlot)
 	if (data)
 	{
 		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		gluBuild2DMipmaps(GL_TEXTURE_2D, nrChannels, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		//gluBuild2DMipmaps(GL_TEXTURE_2D, nrChannels, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
 	}
 	else
 	{
@@ -362,8 +363,8 @@ void RenderScene(void)
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, dust);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	//terrain->draw();
-	//rock->draw();
+	terrain->draw();
+	rock->draw();
 	well->draw();
 
 	/////////////////////////////////////////////////////////////////
