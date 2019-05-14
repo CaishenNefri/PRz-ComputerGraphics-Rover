@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Rover.cpp" />
     <ClCompile Include="source.cpp" />
@@ -130,9 +131,12 @@
     <ClInclude Include="..\RESOURCE.H" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="object_loader.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="Rover.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

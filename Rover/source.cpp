@@ -30,6 +30,11 @@
 #include "../resource.h" // About box resource identifiers.
 
 #include "Rover.h"
+
+#include "object.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 //#include "Body.h"
 //#include "Wheel.h"
 //#include "Cylinder.h"
@@ -52,6 +57,33 @@ static GLfloat zRot = 0.0f;
 
 static GLsizei lastHeight;
 static GLsizei lastWidth;
+
+
+unsigned int dust = 0;
+
+unsigned int LoadTexture(const char* file, GLenum textureSlot)
+{
+	GLuint texHandle;
+	// Copy file to OpenGL
+	glGenTextures(textureSlot, &texHandle);
+	glBindTexture(GL_TEXTURE_2D, texHandle);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	int width, height, nrChannels;
+	const auto data = stbi_load(file, &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		gluBuild2DMipmaps(GL_TEXTURE_2D, nrChannels, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	}
+	else
+	{
+		//error
+	}
+	stbi_image_free(data);
+	return texHandle;
+}
 
 // Opis tekstury
 BITMAPINFOHEADER	bitmapInfoHeader;	// nag³ówek obrazu
@@ -274,6 +306,14 @@ GLfloat pos[3] = { 0,0,0 };
 auto rover = new Rover();
 //auto circle = new Circle(20, 90, Param::x);
 
+GLfloat rot[] = { 90,1,0,0 };
+GLfloat pos1[3] = { 0,0,-5 };
+GLfloat color1[3] = { 0.9,0.49,0.07 };
+
+auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 50 };
+
+
+
 // Called to draw scene
 void RenderScene(void)
 {
@@ -301,8 +341,11 @@ void RenderScene(void)
 	//testWheel->draw();
 	//testCylinder->draw();
 	//circle->draw();
-	rover->draw();
-
+	//rover->draw();
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, dust);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	terrain->draw();
 
 	/////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////
@@ -462,8 +505,8 @@ int APIENTRY WinMain(HINSTANCE       hInst,
 		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
 
 		// Window position and size
-		//448, 156,
-		1920, 520,
+		448, 156,
+		//1920, 520,
 		1024, 768,
 		NULL,
 		NULL,
@@ -521,7 +564,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		glGenTextures(2, &texture[0]);                  // tworzy obiekt tekstury			
 
 		// ³aduje pierwszy obraz tekstury:
-		//bitmapData = LoadBitmapFile("Bitmapy\\checker.bmp", &bitmapInfoHeader);
+		bitmapData = LoadBitmapFile((char*)"dust.jpg", &bitmapInfoHeader);
 
 		glBindTexture(GL_TEXTURE_2D, texture[0]);       // aktywuje obiekt tekstury
 
@@ -537,6 +580,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 
 		if (bitmapData)
 			free(bitmapData);
+		dust = LoadTexture("dust.jpg", 1);
 
 		// ³aduje drugi obraz tekstury:
 		//bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
