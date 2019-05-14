@@ -60,6 +60,7 @@ static GLsizei lastWidth;
 
 
 unsigned int dust = 0;
+unsigned int rockp = 0;
 
 
 unsigned int LoadTexture(const char* file, GLenum textureSlot)
@@ -154,7 +155,7 @@ void calcNormal(float v[3][3], float out[3])
 // Change viewing volume and viewport.  Called when window is resized
 void ChangeSize(GLsizei w, GLsizei h)
 {
-	GLfloat nRange = 100.0f;
+	GLfloat nRange = 90.0f; //tutaj sie zmienia zakres xD
 	GLfloat fAspect;
 	// Prevent a divide by zero
 	if (h == 0)
@@ -321,15 +322,15 @@ GLfloat rot_r[] = { 0,0,0,0 };
 GLfloat pos1_r[3] = { 22,10,10 };
 GLfloat color1_r[3] = { 0.1,0.39,0.17 };
 
-auto rock = new object{ dust, "rock.obj", color1_r, pos1_r, rot_r, 5 }; //last number  is a scale
+auto rock = new object{ dust, "rock.obj", color1_r, pos1_r, rot_r, 5 };
 
 
-//rock definition
+//well definition
 GLfloat rot_w[] = { 90,1,0,0 };
 GLfloat pos1_w[3] = { 0,1,5 };
 GLfloat color1_w[3] = { 0.11,0.21,0.17 };
 
-auto well = new object{ dust, "well.obj", color1_w, pos1_w, rot_w, 5 }; //last number  is a scale
+auto well = new object{ dust, "well.obj", color1_w, pos1_w, rot_w, 5 };
 
 
 // Called to draw scene
@@ -360,10 +361,17 @@ void RenderScene(void)
 	//testCylinder->draw();
 	//circle->draw();
 	rover->draw();
+	//glEnable(GL_TEXTURE_2D);
+	//glBindTexture(GL_TEXTURE_2D, dust);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPushMatrix();
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, dust);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	terrain->draw();
+	glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
+	//glBindTexture(GL_TEXTURE_2D, rockp);
 	rock->draw();
 	well->draw();
 
@@ -601,6 +609,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		if (bitmapData)
 			free(bitmapData);
 		dust = LoadTexture("dust.png", 1);
+		rockp = LoadTexture("dust.png", 1);
 
 		// �aduje drugi obraz tekstury:
 		//bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
