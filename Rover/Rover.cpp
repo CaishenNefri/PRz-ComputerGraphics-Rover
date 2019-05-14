@@ -4,12 +4,14 @@
 
 Rover::Rover()
 {
+	int scale = 20;
+
 	amountWheels = 3;
-	sizeWheel = 20;
-	depthWheel = 10;
-	width = 100;
-	heigth = 30;
-	depth = 60;
+	sizeWheel = 20 / scale;
+	depthWheel = 10 / scale;
+	width = 100 / scale;
+	heigth = 30 / scale;
+	depth = 60 / scale;
 
 
 
@@ -57,8 +59,8 @@ Rover::Rover()
 	spoilerTop2 = new Body(width / 16, heigth / 8, depth + depth / 3,
 		pos[Param::x] + width / 2.5, pos[Param::y] + heigth*1.5, pos[Param::z]);
 
-	GLdouble aerialWD = 3;
-	GLdouble aerialH = 50;
+	GLdouble aerialWD = 3 / scale;
+	GLdouble aerialH = 50 / scale;
 	aerial1 = new Body(aerialWD, aerialH, aerialWD,
 		pos[Param::x] - width / 2.5, pos[Param::y] + heigth/2 + aerialH/2, pos[Param::z]);
 	aerial2 = new Body(aerialWD, aerialH*1.5, aerialWD,

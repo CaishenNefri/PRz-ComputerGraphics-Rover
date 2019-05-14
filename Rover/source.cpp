@@ -359,7 +359,7 @@ void RenderScene(void)
 	//testWheel->draw();
 	//testCylinder->draw();
 	//circle->draw();
-	//rover->draw();
+	rover->draw();
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, dust);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

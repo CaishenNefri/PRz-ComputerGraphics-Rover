@@ -10,7 +10,7 @@ public:
 
 	void draw();
 
-	GLdouble pos[3];
+	GLdouble pos[3] = {7,7,7};
 	GLint amountWheels;
 	GLdouble sizeWheel, depthWheel, width, heigth, depth;
 
