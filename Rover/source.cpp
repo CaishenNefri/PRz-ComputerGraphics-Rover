@@ -60,6 +60,7 @@ static GLsizei lastWidth;
 
 
 unsigned int dust = 0;
+unsigned int rock_pattern = 0;
 
 unsigned int LoadTexture(const char* file, GLenum textureSlot)
 {
@@ -306,13 +307,20 @@ GLfloat pos[3] = { 0,0,0 };
 auto rover = new Rover();
 //auto circle = new Circle(20, 90, Param::x);
 
+
+//variables describing terrain positionR
 GLfloat rot[] = { 90,1,0,0 };
 GLfloat pos1[3] = { 0,0,-5 };
 GLfloat color1[3] = { 0.9,0.49,0.07 };
 
-auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 50 };
+auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 66 }; //last number is the scale of object
 
+//variables describing rock positionR
+GLfloat rot_r[] = { 90,1,0,0 };
+GLfloat pos1_r[3] = { 0,0,-5 };
+GLfloat color1_r[3] = { 0.9,0.49,0.07 };
 
+auto rock = new object{ rock_pattern, "rock.obj", color1_r, pos1_r, rot_r, 44 };
 
 // Called to draw scene
 void RenderScene(void)
@@ -342,10 +350,16 @@ void RenderScene(void)
 	//testCylinder->draw();
 	//circle->draw();
 	//rover->draw();
+
+	//glEnable(GL_TEXTURE_2D);
+	//glBindTexture(GL_TEXTURE_2D, dust);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	//terrain->draw();
+
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, dust);
+	glBindTexture(GL_TEXTURE_2D, rock_pattern);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	terrain->draw();
+	rock->draw();
 
 	/////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////
@@ -564,7 +578,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		glGenTextures(2, &texture[0]);                  // tworzy obiekt tekstury			
 
 		// ³aduje pierwszy obraz tekstury:
-		bitmapData = LoadBitmapFile((char*)"dust.jpg", &bitmapInfoHeader);
+		bitmapData = LoadBitmapFile((char*)"dust.png", &bitmapInfoHeader);
 
 		glBindTexture(GL_TEXTURE_2D, texture[0]);       // aktywuje obiekt tekstury
 
@@ -580,7 +594,8 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 
 		if (bitmapData)
 			free(bitmapData);
-		dust = LoadTexture("dust.jpg", 1);
+		dust = LoadTexture("dust.png", 1);
+		rock_pattern = LoadTexture("rock.png", 1);
 
 		// ³aduje drugi obraz tekstury:
 		//bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
