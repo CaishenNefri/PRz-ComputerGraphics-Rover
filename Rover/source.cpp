@@ -313,23 +313,23 @@ GLfloat rot[] = { 90,1,0,0 }; //rotatiom
 GLfloat pos1[3] = { 0,0,-5 }; //position
 GLfloat color1[3] = { 0.9,0.49,0.07 }; //color (when pattern not loaded)
 
-auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 50 }; //last number  is a scale
+auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 60 }; //last number  is a scale
 
 
 //rock definition
-GLfloat rot_r[] = { 90,1,0,0 };
-GLfloat pos1_r[3] = { 0,0,-5 };
-GLfloat color1_r[3] = { 0.9,0.49,0.07 };
+GLfloat rot_r[] = { 0,0,0,0 };
+GLfloat pos1_r[3] = { 22,10,10 };
+GLfloat color1_r[3] = { 0.1,0.39,0.17 };
 
-auto rock = new object{ dust, "rock.obj", color1_r, pos1_r, rot_r, 50 }; //last number  is a scale
+auto rock = new object{ dust, "rock.obj", color1_r, pos1_r, rot_r, 5 }; //last number  is a scale
 
 
 //rock definition
 GLfloat rot_w[] = { 90,1,0,0 };
-GLfloat pos1_w[3] = { 0,0,-5 };
-GLfloat color1_w[3] = { 0.9,0.49,0.07 };
+GLfloat pos1_w[3] = { 0,1,5 };
+GLfloat color1_w[3] = { 0.11,0.21,0.17 };
 
-auto well = new object{ dust, "well.obj", color1_w, pos1_w, rot_w, 50 }; //last number  is a scale
+auto well = new object{ dust, "well.obj", color1_w, pos1_w, rot_w, 5 }; //last number  is a scale
 
 
 // Called to draw scene
