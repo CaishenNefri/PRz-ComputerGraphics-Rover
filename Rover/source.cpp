@@ -1,9 +1,9 @@
-// Gl_template.c
-//Wy³šczanie b³êdów przed "fopen"
+ï»¿// Gl_template.c
+//Wyï¿½ï¿½czanie bï¿½ï¿½dï¿½w przed "fopen"
 #define  _CRT_SECURE_NO_WARNINGS
 
 
-// £adowanie bibliotek:
+// ï¿½adowanie bibliotek:
 #ifdef _MSC_VER                         // Check if MS Visual C compiler
 #  pragma comment(lib, "opengl32.lib")  // Compiler-specific directive to avoid manually configuration
 #  pragma comment(lib, "glu32.lib")     // Link libraries
@@ -60,7 +60,6 @@ static GLsizei lastWidth;
 
 
 unsigned int dust = 0;
-unsigned int rock_pattern = 0;
 
 unsigned int LoadTexture(const char* file, GLenum textureSlot)
 {
@@ -87,7 +86,7 @@ unsigned int LoadTexture(const char* file, GLenum textureSlot)
 }
 
 // Opis tekstury
-BITMAPINFOHEADER	bitmapInfoHeader;	// nag³ówek obrazu
+BITMAPINFOHEADER	bitmapInfoHeader;	// nagï¿½ï¿½wek obrazu
 unsigned char*		bitmapData;			// dane tekstury
 unsigned int		texture[2];			// obiekt tekstury
 
@@ -232,23 +231,23 @@ void SetupRC()
 }
 
 // LoadBitmapFile
-// opis: ³aduje mapê bitow¹ z pliku i zwraca jej adres.
-//       Wype³nia strukturê nag³ówka.
-//	 Nie obs³uguje map 8-bitowych.
+// opis: ï¿½aduje mapï¿½ bitowï¿½ z pliku i zwraca jej adres.
+//       Wypeï¿½nia strukturï¿½ nagï¿½ï¿½wka.
+//	 Nie obsï¿½uguje map 8-bitowych.
 unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader)
 {
-	FILE *filePtr;							// wskaŸnik pozycji pliku
-	BITMAPFILEHEADER	bitmapFileHeader;		// nag³ówek pliku
+	FILE *filePtr;							// wskaï¿½nik pozycji pliku
+	BITMAPFILEHEADER	bitmapFileHeader;		// nagï¿½ï¿½wek pliku
 	unsigned char		*bitmapImage;			// dane obrazu
 	int					imageIdx = 0;		// licznik pikseli
-	unsigned char		tempRGB;				// zmienna zamiany sk³adowych
+	unsigned char		tempRGB;				// zmienna zamiany skï¿½adowych
 
 	// otwiera plik w trybie "read binary"
 	filePtr = fopen(filename, "rb");
 	if (filePtr == NULL)
 		return NULL;
 
-	// wczytuje nag³ówek pliku
+	// wczytuje nagï¿½ï¿½wek pliku
 	fread(&bitmapFileHeader, sizeof(BITMAPFILEHEADER), 1, filePtr);
 
 	// sprawdza, czy jest to plik formatu BMP
@@ -258,16 +257,16 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 		return NULL;
 	}
 
-	// wczytuje nag³ówek obrazu
+	// wczytuje nagï¿½ï¿½wek obrazu
 	fread(bitmapInfoHeader, sizeof(BITMAPINFOHEADER), 1, filePtr);
 
-	// ustawia wskaŸnik pozycji pliku na pocz¹tku danych obrazu
+	// ustawia wskaï¿½nik pozycji pliku na poczï¿½tku danych obrazu
 	fseek(filePtr, bitmapFileHeader.bfOffBits, SEEK_SET);
 
-	// przydziela pamiêæ buforowi obrazu
+	// przydziela pamiï¿½ï¿½ buforowi obrazu
 	bitmapImage = (unsigned char*)malloc(bitmapInfoHeader->biSizeImage);
 
-	// sprawdza, czy uda³o siê przydzieliæ pamiêæ
+	// sprawdza, czy udaï¿½o siï¿½ przydzieliï¿½ pamiï¿½ï¿½
 	if (!bitmapImage)
 	{
 		free(bitmapImage);
@@ -278,14 +277,14 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 	// wczytuje dane obrazu
 	fread(bitmapImage, 1, bitmapInfoHeader->biSizeImage, filePtr);
 
-	// sprawdza, czy dane zosta³y wczytane
+	// sprawdza, czy dane zostaï¿½y wczytane
 	if (bitmapImage == NULL)
 	{
 		fclose(filePtr);
 		return NULL;
 	}
 
-	// zamienia miejscami sk³adowe R i B 
+	// zamienia miejscami skï¿½adowe R i B 
 	for (imageIdx = 0; imageIdx < bitmapInfoHeader->biSizeImage; imageIdx += 3)
 	{
 		tempRGB = bitmapImage[imageIdx];
@@ -293,7 +292,7 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 		bitmapImage[imageIdx + 2] = tempRGB;
 	}
 
-	// zamyka plik i zwraca wskaŸnik bufora zawieraj¹cego wczytany obraz
+	// zamyka plik i zwraca wskaï¿½nik bufora zawierajï¿½cego wczytany obraz
 	fclose(filePtr);
 	return bitmapImage;
 }
@@ -308,19 +307,29 @@ auto rover = new Rover();
 //auto circle = new Circle(20, 90, Param::x);
 
 
-//variables describing terrain positionR
-GLfloat rot[] = { 90,1,0,0 };
-GLfloat pos1[3] = { 0,0,-5 };
-GLfloat color1[3] = { 0.9,0.49,0.07 };
+//terrain definition
+GLfloat rot[] = { 90,1,0,0 }; //rotatiom
+GLfloat pos1[3] = { 0,0,-5 }; //position
+GLfloat color1[3] = { 0.9,0.49,0.07 }; //color (when pattern not loaded)
 
-auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 66 }; //last number is the scale of object
+auto terrain = new object{ dust, "terrain.obj", color1, pos1, rot, 50 }; //last number  is a scale
 
-//variables describing rock positionR
+
+//rock definition
 GLfloat rot_r[] = { 90,1,0,0 };
 GLfloat pos1_r[3] = { 0,0,-5 };
 GLfloat color1_r[3] = { 0.9,0.49,0.07 };
 
-auto rock = new object{ rock_pattern, "rock.obj", color1_r, pos1_r, rot_r, 44 };
+auto rock = new object{ dust, "rock.obj", color1_r, pos1_r, rot_r, 50 }; //last number  is a scale
+
+
+//rock definition
+GLfloat rot_w[] = { 90,1,0,0 };
+GLfloat pos1_w[3] = { 0,0,-5 };
+GLfloat color1_w[3] = { 0.9,0.49,0.07 };
+
+auto well = new object{ dust, "well.obj", color1_w, pos1_w, rot_w, 50 }; //last number  is a scale
+
 
 // Called to draw scene
 void RenderScene(void)
@@ -340,8 +349,8 @@ void RenderScene(void)
 	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
 	/////////////////////////////////////////////////////////////////
 
-	//Sposób na odróŸnienie "przedniej" i "tylniej" œciany wielok¹ta:
-	glPolygonMode(GL_BACK,GL_LINE);
+	//Sposï¿½b na odrï¿½nienie "przedniej" i "tylniej" ï¿½ciany wielokï¿½ta:
+	glPolygonMode(GL_BACK, GL_LINE);
 
 	//Uzyskanie siatki:
 	//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -350,16 +359,12 @@ void RenderScene(void)
 	//testCylinder->draw();
 	//circle->draw();
 	//rover->draw();
-
-	//glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, dust);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	//terrain->draw();
-
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, rock_pattern);
+	glBindTexture(GL_TEXTURE_2D, dust);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	rock->draw();
+	//terrain->draw();
+	//rock->draw();
+	well->draw();
 
 	/////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////
@@ -577,7 +582,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		SetupRC();
 		glGenTextures(2, &texture[0]);                  // tworzy obiekt tekstury			
 
-		// ³aduje pierwszy obraz tekstury:
+		// ï¿½aduje pierwszy obraz tekstury:
 		bitmapData = LoadBitmapFile((char*)"dust.png", &bitmapInfoHeader);
 
 		glBindTexture(GL_TEXTURE_2D, texture[0]);       // aktywuje obiekt tekstury
@@ -595,9 +600,8 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		if (bitmapData)
 			free(bitmapData);
 		dust = LoadTexture("dust.png", 1);
-		rock_pattern = LoadTexture("rock.png", 1);
 
-		// ³aduje drugi obraz tekstury:
+		// ï¿½aduje drugi obraz tekstury:
 		//bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
 		glBindTexture(GL_TEXTURE_2D, texture[1]);       // aktywuje obiekt tekstury
 
@@ -614,7 +618,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		if (bitmapData)
 			free(bitmapData);
 
-		// ustalenie sposobu mieszania tekstury z t³em
+		// ustalenie sposobu mieszania tekstury z tï¿½em
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		break;
 
@@ -816,4 +820,3 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 
 	return FALSE;
 }
- 
