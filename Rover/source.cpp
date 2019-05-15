@@ -368,12 +368,12 @@ void RenderScene(void)
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, dust);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	terrain->draw();
+	//terrain->draw();
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 	//glBindTexture(GL_TEXTURE_2D, rockp);
-	rock->draw();
-	well->draw();
+	//rock->draw();
+	//well->draw();
 
 	/////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////

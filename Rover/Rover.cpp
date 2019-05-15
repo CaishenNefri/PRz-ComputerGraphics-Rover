@@ -17,36 +17,36 @@ Rover::Rover()
 
 
 	wheelL1 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::x] + depth);
+		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::z] + depth);
 
 	wheelL2 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::x] + depth);
+		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::z] + depth);
 
 	wheelL3 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::x] + depth);
+		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::z] + depth);
 
 	wheelR1 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::x] - depth);
+		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::z] - depth);
 
 	wheelR2 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::x] - depth);
+		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::z] - depth);
 
 	wheelR3 = new Wheel(sizeWheel, depthWheel,
-		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::x] - depth);
+		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::z] - depth);
 
 	suspensionL1 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::x] + depth / 1.5);
+		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::z] + depth / 1.5);
 	suspensionL2 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::x] + depth / 1.5);
+		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::z] + depth / 1.5);
 	suspensionL3 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::x] + depth / 1.5);
+		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::z] + depth / 1.5);
 
 	suspensionR1 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::x] - depth / 1.5);
+		pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::z] - depth / 1.5);
 	suspensionR2 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::x] - depth / 1.5);
+		pos[Param::x], pos[Param::y] - heigth / 2, pos[Param::z] - depth / 1.5);
 	suspensionR3 = new Wheel(sizeWheel / 2, depth / 2,
-		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::x] - depth / 1.5);
+		pos[Param::x] + width / 2, pos[Param::y] - heigth / 2, pos[Param::z] - depth / 1.5);
 
 	body = new Body(width, heigth, depth, pos[Param::x], pos[Param::y], pos[Param::z]);
 
