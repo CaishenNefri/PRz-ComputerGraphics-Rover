@@ -59,7 +59,7 @@ void Wheel::draw()
 		a = radius * cos(alpha);
 		h = radius * sin(alpha);
 		glVertex3d(posD[Param::x] - a, posD[Param::y] - h, posD[Param::z]);
-		glVertex3d(posD[Param::x] - a, posD[Param::y] - h, posD[Param::z]+depth);
+		glVertex3d(posD[Param::x] - a, posD[Param::y] - h, posD[Param::z] + depth);
 	}
 	glEnd();
-}	
+}

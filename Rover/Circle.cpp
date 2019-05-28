@@ -1,7 +1,7 @@
 #include "Circle.h"
 
 
-Circle::Circle(GLdouble radius, GLdouble angle, Param axis):
+Circle::Circle(GLdouble radius, GLdouble angle, Param axis) :
 	Part()
 {
 	this->radius = radius;

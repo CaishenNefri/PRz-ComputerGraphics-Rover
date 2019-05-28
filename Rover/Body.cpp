@@ -1,8 +1,8 @@
 #include "Body.h"
 
 Body::Body(GLdouble w, GLdouble h, GLdouble d,
-	GLdouble bX, GLdouble bY, GLdouble bZ):
-	Part(bX,bY,bZ)
+	GLdouble bX, GLdouble bY, GLdouble bZ) :
+	Part(bX, bY, bZ)
 {
 	width = w;
 	height = h;
@@ -29,18 +29,18 @@ void Body::draw()
 
 	//front wall
 	glBegin(GL_TRIANGLE_STRIP);
-	for (int x = 0; x <= width; x++){
+	for (int x = 0; x <= width; x++) {
 		glVertex3d(posD[Param::x] + x, posD[Param::y] + height, posD[Param::z]);
-		glVertex3d(posD[Param::x]+x, posD[Param::y], posD[Param::z]);
+		glVertex3d(posD[Param::x] + x, posD[Param::y], posD[Param::z]);
 	}
 	glEnd();
 
 	//rear wall
 	glBegin(GL_TRIANGLE_STRIP);
-	for (int x = 0; x <= width; x++){
+	for (int x = 0; x <= width; x++) {
 		glVertex3d(posD[Param::x] + x, posD[Param::y], posD[Param::z] - depth);
 		glVertex3d(posD[Param::x] + x, posD[Param::y] + height, posD[Param::z] - depth);
-		
+
 	}
 	glEnd();
 

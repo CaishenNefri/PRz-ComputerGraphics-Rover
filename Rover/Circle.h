@@ -7,7 +7,7 @@ public:
 	Circle(GLdouble radius, GLdouble angle, Param axis);
 	Circle(GLdouble radius, GLdouble angle, Param axis, GLdouble posD[3]);
 	~Circle();
-		
+
 	void draw();
 protected:
 	GLdouble radius, height, angle;

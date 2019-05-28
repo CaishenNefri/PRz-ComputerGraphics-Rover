@@ -50,23 +50,23 @@ Rover::Rover()
 
 	body = new Body(width, heigth, depth, pos[Param::x], pos[Param::y], pos[Param::z]);
 
-	spoilerLeft = new Body(width/16, heigth, depth/8,
-		pos[Param::x] + width / 2.5, pos[Param::y] + heigth , pos[Param::z] + depth / 2);
+	spoilerLeft = new Body(width / 16, heigth, depth / 8,
+		pos[Param::x] + width / 2.5, pos[Param::y] + heigth, pos[Param::z] + depth / 2);
 	spoilerRight = new Body(width / 16, heigth, depth / 8,
 		pos[Param::x] + width / 2.5, pos[Param::y] + heigth, pos[Param::z] - depth / 2);
-	spoilerTop1 = new Body(width/16, heigth/8, depth + depth/3,
+	spoilerTop1 = new Body(width / 16, heigth / 8, depth + depth / 3,
 		pos[Param::x] + width / 2.5, pos[Param::y] + heigth, pos[Param::z]);
 	spoilerTop2 = new Body(width / 16, heigth / 8, depth + depth / 3,
-		pos[Param::x] + width / 2.5, pos[Param::y] + heigth*1.5, pos[Param::z]);
+		pos[Param::x] + width / 2.5, pos[Param::y] + heigth * 1.5, pos[Param::z]);
 
 	GLdouble aerialWD = 3 / scale;
 	GLdouble aerialH = 50 / scale;
 	aerial1 = new Body(aerialWD, aerialH, aerialWD,
-		pos[Param::x] - width / 2.5, pos[Param::y] + heigth/2 + aerialH/2, pos[Param::z]);
+		pos[Param::x] - width / 2.5, pos[Param::y] + heigth / 2 + aerialH / 2, pos[Param::z]);
 	aerial2 = new Body(aerialWD, aerialH*1.5, aerialWD,
-		pos[Param::x] - width / 2.5, pos[Param::y] + heigth / 2 + aerialH*1.5 / 2, pos[Param::z]+depth/2.5);
+		pos[Param::x] - width / 2.5, pos[Param::y] + heigth / 2 + aerialH * 1.5 / 2, pos[Param::z] + depth / 2.5);
 	aerial3 = new Body(aerialWD, aerialH*1.5, aerialWD,
-		pos[Param::x] - width / 2.5, pos[Param::y] + heigth / 2 + aerialH*1.5 / 2, pos[Param::z]-depth/2.5);
+		pos[Param::x] - width / 2.5, pos[Param::y] + heigth / 2 + aerialH * 1.5 / 2, pos[Param::z] - depth / 2.5);
 
 }
 
@@ -99,11 +99,11 @@ void Rover::draw()
 	suspensionR1->color[Color::r] = 1;
 	suspensionR1->color[Color::g] = 1;
 	suspensionR1->color[Color::b] = 1;
-			  
+
 	suspensionR2->color[Color::r] = 1;
 	suspensionR2->color[Color::g] = 1;
 	suspensionR2->color[Color::b] = 1;
-			  
+
 	suspensionR3->color[Color::r] = 1;
 	suspensionR3->color[Color::g] = 1;
 	suspensionR3->color[Color::b] = 1;
@@ -144,5 +144,5 @@ void Rover::draw()
 	aerial3->color[Color::r] = 1;
 	aerial3->color[Color::g] = 1;
 	aerial3->draw();
-	
+
 }

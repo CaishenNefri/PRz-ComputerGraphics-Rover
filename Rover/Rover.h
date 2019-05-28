@@ -10,14 +10,14 @@ public:
 
 	void draw();
 
-	GLdouble pos[3] = {1,15,33};
+	GLdouble pos[3] = { 1,15,33 };
 	GLint amountWheels;
 	GLdouble sizeWheel, depthWheel, width, heigth, depth;
 
 	Wheel *wheelL1;
 	Wheel *wheelL2;
 	Wheel *wheelL3;
-	
+
 	Wheel *wheelR1;
 	Wheel *wheelR2;
 	Wheel *wheelR3;

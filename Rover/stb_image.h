@@ -733,8 +733,8 @@ typedef struct
 	int buflen;
 	stbi_uc buffer_start[128];
 
-	stbi_uc* img_buffer, *img_buffer_end;
-	stbi_uc* img_buffer_original, *img_buffer_original_end;
+	stbi_uc* img_buffer, * img_buffer_end;
+	stbi_uc* img_buffer_original, * img_buffer_original_end;
 } stbi__context;
 
 
@@ -1790,7 +1790,7 @@ typedef struct
 
 		int x, y, w2, h2;
 		stbi_uc* data;
-		void* raw_data, *raw_coeff;
+		void* raw_data, * raw_coeff;
 		stbi_uc* linebuf;
 		short* coeff;   // progressive only
 		int      coeff_w, coeff_h; // number of 8x8 coefficient blocks
@@ -2282,7 +2282,7 @@ stbi_inline static stbi_uc stbi__clamp(int x)
 
 static void stbi__idct_block(stbi_uc * out, int out_stride, short data[64])
 {
-	int i, val[64], *v = val;
+	int i, val[64], * v = val;
 	stbi_uc* o;
 	short* d = data;
 
@@ -3645,7 +3645,7 @@ static void stbi__cleanup_jpeg(stbi__jpeg * j)
 typedef struct
 {
 	resample_row_func resample;
-	stbi_uc* line0, *line1;
+	stbi_uc* line0, * line1;
 	int hs, vs;   // expansion factor in each axis
 	int w_lores; // horizontal pixels pre-expansion
 	int ystep;   // how far through vertical expansion we are
@@ -3971,7 +3971,7 @@ static int stbi__zbuild_huffman(stbi__zhuffman * z, const stbi_uc * sizelist, in
 
 typedef struct
 {
-	stbi_uc* zbuffer, *zbuffer_end;
+	stbi_uc* zbuffer, * zbuffer_end;
 	int num_bits;
 	stbi__uint32 code_buffer;
 
@@ -4395,7 +4395,7 @@ static int stbi__check_png_header(stbi__context * s)
 typedef struct
 {
 	stbi__context* s;
-	stbi_uc* idata, *expanded, *out;
+	stbi_uc* idata, * expanded, * out;
 	int depth;
 } stbi__png;
 
@@ -4752,7 +4752,7 @@ static int stbi__compute_transparency16(stbi__png * z, stbi__uint16 tc[3], int o
 static int stbi__expand_png_palette(stbi__png * a, stbi_uc * palette, int len, int pal_img_n)
 {
 	stbi__uint32 i, pixel_count = a->s->img_x * a->s->img_y;
-	stbi_uc* p, *temp_out, *orig = a->out;
+	stbi_uc* p, * temp_out, * orig = a->out;
 
 	p = (stbi_uc*)stbi__malloc_mad2(pixel_count, pal_img_n, 0);
 	if (p == NULL) return stbi__err("outofmem", "Out of memory");
@@ -6371,7 +6371,7 @@ static int stbi__gif_info_raw(stbi__context * s, int* x, int* y, int* comp)
 
 static void stbi__out_gif_code(stbi__gif * g, stbi__uint16 code)
 {
-	stbi_uc* p, *c;
+	stbi_uc* p, * c;
 	int idx;
 
 	// recurse to decode the prefixes, since the linked-list is backwards,

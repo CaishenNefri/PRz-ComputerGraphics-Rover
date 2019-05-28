@@ -8,8 +8,8 @@
 #include <gl\glu.h>             // GLU library
 #include <iostream>
 
-enum Param : unsigned int { x, y, z};
-enum Color : unsigned int { r, g, b, a};
+enum Param : unsigned int { x, y, z };
+enum Color : unsigned int { r, g, b, a };
 
 class Part
 {
