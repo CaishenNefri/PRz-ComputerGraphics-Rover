@@ -593,49 +593,12 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		hRC = wglCreateContext(hDC);
 		wglMakeCurrent(hDC, hRC);
 		SetupRC();
-		glGenTextures(2, &texture[0]);                  // tworzy obiekt tekstury			
-
-
-
+		glGenTextures(2, &texture[0]);                  // tworzy sie obiekt tekstury			
 
 		textures[0] = LoadTexture("terr.png", 1);
 		textures[1] = LoadTexture("rock.png", 1);
 		textures[2] = LoadTexture("rock2.png", 1);
-		// ³aduje pierwszy obraz tekstury:
-		//bitmapData = LoadBitmapFile((char*)"dust.bmp", &bitmapInfoHeader);
-
-		//glBindTexture(GL_TEXTURE_2D, texture[0]);       // aktywuje obiekt tekstury
-
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-		//// tworzy obraz tekstury
-		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bitmapInfoHeader.biWidth,
-		//	bitmapInfoHeader.biHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, bitmapData);
-
-		//if (bitmapData)
-		//	free(bitmapData);
-
-		//// ³aduje drugi obraz tekstury:
-		////bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
-		//glBindTexture(GL_TEXTURE_2D, texture[1]);       // aktywuje obiekt tekstury
-
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-		//// tworzy obraz tekstury
-		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bitmapInfoHeader.biWidth,
-		//	bitmapInfoHeader.biHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, bitmapData);
-
-		//if (bitmapData)
-		//	free(bitmapData);
-		//
+	
 
 		// ustalenie sposobu mieszania tekstury z t³em
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -726,23 +689,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_KEYDOWN:
 	{
 		camera->update(wParam);
-		/*if (wParam == VK_UP)
-			xRot -= 5.0f;
 
-		if (wParam == VK_DOWN)
-			xRot += 5.0f;
-
-		if (wParam == VK_LEFT)
-			yRot -= 5.0f;
-
-		if (wParam == VK_RIGHT)
-			yRot += 5.0f;
-
-		if (wParam == 'Q')
-			zRot -= 5.0f;
-
-		if (wParam == 'E')
-			zRot += 5.0f;*/
 
 		xRot = (const int)xRot % 360;
 		yRot = (const int)yRot % 360;
