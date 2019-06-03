@@ -147,6 +147,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="GL_template.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Roller.cpp" />
     <ClCompile Include="Rover.cpp" />
