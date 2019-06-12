@@ -1,18 +1,11 @@
-// Gl_template.c
-//Wy³šczanie b³êdów przed "fopen"
+// Gl_template.cpp
 #define  _CRT_SECURE_NO_WARNINGS
 
-
-
 // Ladowanie bibliotek:
-
 #ifdef _MSC_VER                         // Check if MS Visual C compiler
 #  pragma comment(lib, "opengl32.lib")  // Compiler-specific directive to avoid manually configuration
 #  pragma comment(lib, "glu32.lib")     // Link libraries
 #endif
-
-
-
 
 // Ustalanie trybu tekstowego:
 #ifdef _MSC_VER        // Check if MS Visual C compiler
@@ -538,8 +531,8 @@ int APIENTRY WinMain(HINSTANCE       hInst,
 		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
 
 		// Window position and size
-		50, 50,
-		400, 400,
+		1920, 650,
+		600, 600,
 		NULL,
 		NULL,
 		hInstance,
