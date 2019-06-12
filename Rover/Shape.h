@@ -1,1 +1,4 @@
 #pragma once
+
+
+enum ShapeType

@@ -170,6 +170,7 @@
     <ClInclude Include="Roller.h" />
     <ClInclude Include="Rover.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="RoverX.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Vec2.h" />

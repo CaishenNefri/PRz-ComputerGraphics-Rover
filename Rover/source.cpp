@@ -29,11 +29,14 @@
 #include "Box.h"
 #include "Lamp.h"
 #include "Roller.h"
-#include "Rover.h"
+//#include "Rover.h"
+#include "RoverX.h"
 #include "Camera.h"
 #include "object.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+
+#include "InputManager.h"
 
 
 #define glRGB(x, y, z)	glColor3ub((GLubyte)x, (GLubyte)y, (GLubyte)z)
@@ -308,7 +311,7 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 
 auto camera = new Camera{};
 
-Rover rover;
+RoverX rover;
 GLfloat rot[] = { 0,1,0,0 };
 GLfloat rot2[] = { 0,0,0,0 };
 
@@ -324,6 +327,8 @@ GLfloat color3[3] = { 0.8,0.9,0.7 };
 auto terrain = new object{ &textures[0], "mars.obj", color1, pos1, rot, 20 };
 auto rock = new object{ &textures[1], "rock.obj", color2,pos2,rot2,10 };
 auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,1 };
+
+InputManager& inputManager = InputManager::GetInstance();
 
 void RenderScene(void)
 {
@@ -569,6 +574,8 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	static HGLRC hRC;               // Permenant Rendering context
 	static HDC hDC;                 // Private GDI Device context
 
+	inputManager.Update();
+
 	switch (message)
 	{
 		// Window creation, setup for OpenGL
@@ -624,6 +631,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		// whenever the screen needs updating.
 	case WM_PAINT:
 	{
+		rover.Update(10.f);
 		// Call OpenGL drawing code
 		RenderScene();
 

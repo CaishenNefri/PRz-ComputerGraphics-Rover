@@ -28,6 +28,9 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{44e98305-06e0-4979-9c26-c7ee27c9f5f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Rover">
+      <UniqueIdentifier>{723620ad-1a4e-48f5-976f-b75743e33037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="RoverX.h">
+      <Filter>Objects\Rover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
