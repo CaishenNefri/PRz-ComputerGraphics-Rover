@@ -31,6 +31,9 @@
     <Filter Include="Objects\Rover">
       <UniqueIdentifier>{723620ad-1a4e-48f5-976f-b75743e33037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Shapes">
+      <UniqueIdentifier>{11361fd5-f895-4a6a-aa00-b5f954aa3b3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="RoverX.h">
       <Filter>Objects\Rover</Filter>
+    </ClInclude>
+    <ClInclude Include="Disc.h">
+      <Filter>Objects\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

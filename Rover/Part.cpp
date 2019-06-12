@@ -1,4 +1,4 @@
-#include "Part.h"
+	#include "Part.h"
 
 Part::Part(GLdouble x, GLdouble y, GLdouble z, GLdouble angle, Param axis)
 {
