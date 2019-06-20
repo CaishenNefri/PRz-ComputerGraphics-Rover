@@ -18,7 +18,8 @@ class Shape : public Entity
 	Shape() = default;
 	Shape(ShapeType shapeType) : Type(shapeType) {}
 	Shape(ShapeType shapeType, ColorF color) : Type(shapeType), Color(color) {}
-	
+	std::vector<Vertex> Vertices;
+
 	ShapeType Type = Line;
 	ColorF Color = BLACK;
 
