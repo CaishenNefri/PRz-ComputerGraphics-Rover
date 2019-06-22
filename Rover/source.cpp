@@ -32,9 +32,6 @@
 #include "Renderer.h"
 
 #include "Rover.h"
-//#include "Body.h"
-//#include "Wheel.h"
-//#include "Cylinder.h"
 
 #define glRGB(x, y, z)	glColor3ub((GLubyte)x, (GLubyte)y, (GLubyte)z)
 #define BITMAP_ID 0x4D42		// identyfikator formatu BMP
@@ -67,7 +64,6 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 
 // Systems
 Renderer* renderer = new Renderer();
-
 
 auto rover = new Rover();
 
@@ -171,9 +167,6 @@ int APIENTRY WinMain(HINSTANCE       hInst,
 	return msg.wParam;
 }
 
-
-
-
 // Window procedure, handles all messages for this program
 LRESULT CALLBACK WndProc(HWND    hWnd,
 	UINT    message,
@@ -203,7 +196,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		glGenTextures(2, &texture[0]);                  // tworzy obiekt tekstury			
 
 		// ³aduje pierwszy obraz tekstury:
-		//bitmapData = LoadBitmapFile("Bitmapy\\checker.bmp", &bitmapInfoHeader);
+		//bitmapData = renderer->LoadBitmapFile("Bitmapy\\checker.bmp", &bitmapInfoHeader);
 
 		glBindTexture(GL_TEXTURE_2D, texture[0]);       // aktywuje obiekt tekstury
 
@@ -221,7 +214,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 			free(bitmapData);
 
 		// ³aduje drugi obraz tekstury:
-		//bitmapData = LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
+		//bitmapData = renderer->LoadBitmapFile("Bitmapy\\crate.bmp", &bitmapInfoHeader);
 		glBindTexture(GL_TEXTURE_2D, texture[1]);       // aktywuje obiekt tekstury
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -285,15 +278,13 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		// If the palette was created.
 		if (hPalette)
 		{
-			int nRet;
-
 			// Selects the palette into the current device context
 			SelectPalette(hDC, hPalette, FALSE);
 
 			// Map entries from the currently selected palette to
 			// the system palette.  The return value is the number 
 			// of palette entries modified.
-			nRet = RealizePalette(hDC);
+			int nRet = RealizePalette(hDC);
 
 			// Repaint, forces remap of palette in current window
 			InvalidateRect(hWnd, NULL, FALSE);
