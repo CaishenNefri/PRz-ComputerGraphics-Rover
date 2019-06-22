@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Pliki źródłowe">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Pliki nagłówkowe">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
@@ -19,28 +15,37 @@
     <Filter Include="BaseObjects">
       <UniqueIdentifier>{5f81c8ec-0d28-4f28-9591-de2494f369b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OldObjects">
+      <UniqueIdentifier>{12abe69b-122e-4341-b88f-124a5e1e8b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OldObjects\Headers">
+      <UniqueIdentifier>{24afa3fd-a0d3-4cf6-9c9a-d29ff41452c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OldObjects\Sources">
+      <UniqueIdentifier>{2d609f56-628b-4095-adb9-5f501e5a0a35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Body.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Circle.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Part.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Rover.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Wheel.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>OldObjects\Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,26 +57,26 @@
     <ClInclude Include="..\RESOURCE.H">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Body.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Part.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Rover.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Wheel.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Part.h">
+      <Filter>OldObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>OldObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>OldObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rover.h">
+      <Filter>OldObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>OldObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Wheel.h">
+      <Filter>OldObjects\Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
