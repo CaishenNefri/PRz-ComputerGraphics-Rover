@@ -17,10 +17,11 @@ private:
 	float stepMovement = 10.0;
 	float stepRotation = M_PI / 45;
 
-	GLfloat position[3] = { 0,0,50 };
-	GLfloat lookAt[3] = { 0,1,0 };
-	GLfloat up[3] = { 0,0,1 };
-	float yaw = M_PI / 2;
+	GLfloat position[3] = { 0,0,100 };
+	GLfloat lookAt[3] = { 0,0,0 };
+	GLfloat up[3] = { 0,1,0 };
+	//float yaw = M_PI / 2;
+	float yaw = 0;
 	float pitch = 0;
 };
 

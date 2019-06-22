@@ -56,9 +56,6 @@ public:
 		heigth = 30 / scale;
 		depth = 60 / scale;
 
-
-
-
 		wheelL1 = new Wheel(sizeWheel, depthWheel,
 			pos[Param::x] - width / 2, pos[Param::y] - heigth / 2, pos[Param::z] + depth);
 
@@ -118,9 +115,9 @@ public:
 		/*wheelL1->pos[Param::x] = wheelL1->pos[Param::x] - width / 2;
 		wheelL1->pos[Param::y] = wheelL1->pos[Param::y] - heigth / 2;
 		wheelL1->pos[Param::z] = wheelL1->pos[Param::z] + depth;*/
+		
+	
 
-		
-		
 		wheelL1->draw();
 		wheelL2->draw();
 		wheelL3->draw();
