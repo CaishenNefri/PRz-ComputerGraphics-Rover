@@ -30,6 +30,7 @@
 #include "../resource.h" // About box resource identifiers.
 
 #include "Renderer.h"
+#include "InputManager.h"
 
 #include "Rover.h"
 
@@ -63,7 +64,8 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // Systems
-Renderer* renderer = new Renderer();
+Renderer *renderer = new Renderer();
+InputManager *inputManager;
 
 auto rover = new Rover();
 
