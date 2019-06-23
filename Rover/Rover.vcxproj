@@ -132,10 +132,14 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="M33.h" />
+    <ClInclude Include="Quat.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="Rover.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Vec3.h" />
     <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
