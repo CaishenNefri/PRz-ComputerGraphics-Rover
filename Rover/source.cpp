@@ -201,6 +201,10 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 
 		// ustalenie sposobu mieszania tekstury z t³em
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		//////////////////////////////////////////////////////////////////////////////
+		// OWN INITs
+		scene->Init();
 		break;
 
 		// Window is being destroyed, cleanup
