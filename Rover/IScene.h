@@ -9,7 +9,10 @@
 class IScene : public Entity
 {
 public:
+	InputManager& inputManager = InputManager::GetInstance();
+
 	// Rotation amounts
+	// Rotate around 0,0,0
 	GLfloat xRot = 0.0f;
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
@@ -48,7 +51,12 @@ public:
 
 	void Update(float frameTime)
 	{
+		this->UpdateInputs();
 
+		// Rotate around 0,0,0
+		this->xRot = (const int)this->xRot % 360;
+		this->yRot = (const int)this->yRot % 360;
+		this->zRot = (const int)this->zRot % 360;
 	}
 
 
@@ -145,5 +153,27 @@ public:
 			glVertex3fv(se);
 			glEnd();
 		}
+	}
+
+	void UpdateInputs()
+	{
+		// Rotate around 0,0,0
+		if (inputManager.IsDown('W'))
+			this->xRot -= 5.0f;
+
+		if (inputManager.IsDown('S'))
+			this->xRot += 5.0f;
+
+		if (inputManager.IsDown('A'))
+			this->yRot -= 5.0f;
+
+		if (inputManager.IsDown('D'))
+			this->yRot += 5.0f;
+
+		if (inputManager.IsDown('Q'))
+			this->zRot -= 5.0f;
+
+		if (inputManager.IsDown('E'))
+			this->zRot += 5.0f;
 	}
 };

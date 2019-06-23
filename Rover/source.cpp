@@ -231,6 +231,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_PAINT:
 	{
 		// Call OpenGL drawing code
+		scene->Update(10);
 		scene->RenderScene();
 
 		SwapBuffers(hDC);
@@ -285,27 +286,8 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		// Key press, check for arrow keys to do cube rotation.
 	case WM_KEYDOWN:
 	{
-		if (wParam == 'W')
-			scene->xRot -= 5.0f;
-
-		if (wParam == 'S')
-			scene->xRot += 5.0f;
-
-		if (wParam == 'A')
-			scene->yRot -= 5.0f;
-
-		if (wParam == 'D')
-			scene->yRot += 5.0f;
-
-		if (wParam == 'Q')
-			scene->zRot -= 5.0f;
-
-		if (wParam == 'E')
-			scene->zRot += 5.0f;
-
-		scene->xRot = (const int)scene->xRot % 360;
-		scene->yRot = (const int)scene->yRot % 360;
-		scene->zRot = (const int)scene->zRot % 360;
+		inputManager.Update();
+		scene->UpdateInputs();
 
 		InvalidateRect(hWnd, NULL, FALSE);
 	}
