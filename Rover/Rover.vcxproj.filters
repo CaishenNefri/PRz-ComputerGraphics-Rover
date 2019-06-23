@@ -30,6 +30,12 @@
     <Filter Include="Math">
       <UniqueIdentifier>{bb2b9136-cc25-436a-bb75-9fbd9c951928}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{7fe5fed2-09e0-4f21-a02f-44e22bd22bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Shapes">
+      <UniqueIdentifier>{0bf689dc-8035-4966-9875-5b1be1f1f08c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -106,6 +112,12 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="IScene.h">
+      <Filter>BaseObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Geom.h">
+      <Filter>BaseObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
       <Filter>BaseObjects</Filter>
     </ClInclude>
   </ItemGroup>

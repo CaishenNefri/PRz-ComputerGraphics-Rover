@@ -132,6 +132,7 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorF.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Geom.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="M33.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="Rover.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
