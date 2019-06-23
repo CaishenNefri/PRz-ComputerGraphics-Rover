@@ -31,6 +31,7 @@
 
 #include "Renderer.h"
 #include "InputManager.h"
+#include "IScene.h"
 
 #include "Rover.h"
 
@@ -46,9 +47,9 @@ static LPCTSTR		lpszAppName = "GL Template";
 static HINSTANCE	hInstance;
 
 // Rotation amounts
-static GLfloat xRot = 0.0f;
-static GLfloat yRot = 0.0f;
-static GLfloat zRot = 0.0f;
+//static GLfloat xRot = 0.0f;
+//static GLfloat yRot = 0.0f;
+//static GLfloat zRot = 0.0f;
 
 // Opis tekstury
 BITMAPINFOHEADER	bitmapInfoHeader;	// nag³ówek obrazu
@@ -66,41 +67,41 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 // Systems
 Renderer *renderer = new Renderer();
 InputManager& inputManager = InputManager::GetInstance();
-
+auto scene = new IScene();
 auto rover = new Rover();
 
 // Called to draw scene
-void RenderScene(void)
-{
-	//float normal[3];	// Storeage for calculated surface normal
-
-	// Clear the window with current clearing color
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// Save the matrix state and do the rotations
-	glPushMatrix();
-	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
-	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-	glRotatef(zRot, 0.0f, 0.0f, 1.0f);
-
-	/////////////////////////////////////////////////////////////////
-	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
-	/////////////////////////////////////////////////////////////////
-
-	//Sposób na odróŸnienie "przedniej" i "tylniej" œciany wielok¹ta:
-	glPolygonMode(GL_BACK,GL_LINE);
-
-	//Uzyskanie siatki:
-	//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	rover->draw();
-
-	/////////////////////////////////////////////////////////////////
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-
-	// Flush drawing commands
-	glFlush();
-}
+//void RenderScene(void)
+//{
+//	//float normal[3];	// Storeage for calculated surface normal
+//
+//	// Clear the window with current clearing color
+//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//
+//	// Save the matrix state and do the rotations
+//	glPushMatrix();
+//	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+//	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+//	glRotatef(zRot, 0.0f, 0.0f, 1.0f);
+//
+//	/////////////////////////////////////////////////////////////////
+//	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
+//	/////////////////////////////////////////////////////////////////
+//
+//	//Sposób na odróŸnienie "przedniej" i "tylniej" œciany wielok¹ta:
+//	glPolygonMode(GL_BACK,GL_LINE);
+//
+//	//Uzyskanie siatki:
+//	//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+//	rover->draw();
+//
+//	/////////////////////////////////////////////////////////////////
+//	glPopMatrix();
+//	glMatrixMode(GL_MODELVIEW);
+//
+//	// Flush drawing commands
+//	glFlush();
+//}
 
 // Entry point of all Windows programs
 int APIENTRY WinMain(HINSTANCE       hInst,
@@ -264,7 +265,8 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_PAINT:
 	{
 		// Call OpenGL drawing code
-		RenderScene();
+		//RenderScene();
+		scene->RenderScene();
 
 		SwapBuffers(hDC);
 
@@ -319,26 +321,26 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_KEYDOWN:
 	{
 		if (wParam == 'W')
-			xRot -= 5.0f;
+			scene->xRot -= 5.0f;
 
 		if (wParam == 'S')
-			xRot += 5.0f;
+			scene->xRot += 5.0f;
 
 		if (wParam == 'A')
-			yRot -= 5.0f;
+			scene->yRot -= 5.0f;
 
 		if (wParam == 'D')
-			yRot += 5.0f;
+			scene->yRot += 5.0f;
 
 		if (wParam == 'Q')
-			zRot -= 5.0f;
+			scene->zRot -= 5.0f;
 
 		if (wParam == 'E')
-			zRot += 5.0f;
+			scene->zRot += 5.0f;
 
-		xRot = (const int)xRot % 360;
-		yRot = (const int)yRot % 360;
-		zRot = (const int)zRot % 360;
+		scene->xRot = (const int)scene->xRot % 360;
+		scene->yRot = (const int)scene->yRot % 360;
+		scene->zRot = (const int)scene->zRot % 360;
 
 		InvalidateRect(hWnd, NULL, FALSE);
 	}
