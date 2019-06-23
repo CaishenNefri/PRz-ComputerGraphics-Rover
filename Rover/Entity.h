@@ -15,6 +15,30 @@ public:
 	virtual void PostRender() {}
 
 	virtual void Update(float frametime) {}
+
+	template <class T>
+	T* WithPosition(Vec3 pos) {
+		this->Origin = pos;
+		return this;
+	}
+
+	template <class T>
+	T* WithScale(Vec3 scale) {
+		this->Scale = scale;
+		return this;
+	}
+
+	template <class T>
+	T* WithScale(float scale) {
+		this->Scale = Vec3(scale,scale, scale);
+		return this;
+	}
+
+	template <class T>
+	T* WithRotation(Quat rotation) {
+		this->Rotation = rotation;
+		return this;
+	}
 };
 
 inline float Deg2Rad(const float deg) { return deg * M_PI / 180; }

@@ -131,6 +131,7 @@
     <ClInclude Include="Body.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorF.h" />
+    <ClInclude Include="Disc.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Geom.h" />
     <ClInclude Include="InputManager.h" />
