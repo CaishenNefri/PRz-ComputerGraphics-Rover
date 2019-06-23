@@ -65,7 +65,7 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 
 // Systems
 Renderer *renderer = new Renderer();
-InputManager *inputManager;
+InputManager& inputManager = InputManager::GetInstance();
 
 auto rover = new Rover();
 

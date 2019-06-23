@@ -24,11 +24,11 @@
     <Filter Include="OldObjects\Sources">
       <UniqueIdentifier>{2d609f56-628b-4095-adb9-5f501e5a0a35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maths">
-      <UniqueIdentifier>{bb2b9136-cc25-436a-bb75-9fbd9c951928}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{c38ef7de-5c4d-4db1-a9f9-57512b0410b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{bb2b9136-cc25-436a-bb75-9fbd9c951928}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
