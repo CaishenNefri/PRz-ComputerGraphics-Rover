@@ -68,40 +68,6 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 Renderer *renderer = new Renderer();
 InputManager& inputManager = InputManager::GetInstance();
 auto scene = new IScene();
-auto rover = new Rover();
-
-// Called to draw scene
-//void RenderScene(void)
-//{
-//	//float normal[3];	// Storeage for calculated surface normal
-//
-//	// Clear the window with current clearing color
-//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//
-//	// Save the matrix state and do the rotations
-//	glPushMatrix();
-//	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
-//	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-//	glRotatef(zRot, 0.0f, 0.0f, 1.0f);
-//
-//	/////////////////////////////////////////////////////////////////
-//	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
-//	/////////////////////////////////////////////////////////////////
-//
-//	//Sposób na odróŸnienie "przedniej" i "tylniej" œciany wielok¹ta:
-//	glPolygonMode(GL_BACK,GL_LINE);
-//
-//	//Uzyskanie siatki:
-//	//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-//	rover->draw();
-//
-//	/////////////////////////////////////////////////////////////////
-//	glPopMatrix();
-//	glMatrixMode(GL_MODELVIEW);
-//
-//	// Flush drawing commands
-//	glFlush();
-//}
 
 // Entry point of all Windows programs
 int APIENTRY WinMain(HINSTANCE       hInst,
@@ -265,7 +231,6 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_PAINT:
 	{
 		// Call OpenGL drawing code
-		//RenderScene();
 		scene->RenderScene();
 
 		SwapBuffers(hDC);
