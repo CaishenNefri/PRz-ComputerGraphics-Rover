@@ -28,6 +28,7 @@
 #include <math.h>				// Define for sqrt
 #include <stdio.h>
 #include "../resource.h" // About box resource identifiers.
+#include <chrono>
 
 #include "Renderer.h"
 #include "InputManager.h"
@@ -46,11 +47,6 @@ HPALETTE hPalette = NULL;
 static LPCTSTR		lpszAppName = "GL Template";
 static HINSTANCE	hInstance;
 
-// Rotation amounts
-//static GLfloat xRot = 0.0f;
-//static GLfloat yRot = 0.0f;
-//static GLfloat zRot = 0.0f;
-
 // Opis tekstury
 BITMAPINFOHEADER	bitmapInfoHeader;	// nag³ówek obrazu
 unsigned char*		bitmapData;			// dane tekstury
@@ -65,9 +61,13 @@ BOOL APIENTRY AboutDlgProc(HWND hDlg, UINT message, UINT wParam, LONG lParam);
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // Systems
-Renderer *renderer = new Renderer();
-InputManager& inputManager = InputManager::GetInstance();
+auto renderer = new Renderer();
 auto scene = new IScene();
+InputManager& inputManager = InputManager::GetInstance();
+
+clock_t currentFrame = clock();
+clock_t lastFrame = clock();
+float deltaFrame = 0;
 
 // Entry point of all Windows programs
 int APIENTRY WinMain(HINSTANCE       hInst,
@@ -234,14 +234,18 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		// whenever the screen needs updating.
 	case WM_PAINT:
 	{
-		// Call OpenGL drawing code
-		scene->Update(10);
+		currentFrame = clock();
+
+		scene->Update(deltaFrame);
 		scene->RenderScene();
 
-		SwapBuffers(hDC);
 
-		// Validate the newly painted client area
-		ValidateRect(hWnd, NULL);
+
+		SwapBuffers(hDC);
+		ValidateRect(hWnd, NULL); // Validate the newly painted client area
+
+		lastFrame = clock();
+		deltaFrame = float(lastFrame - currentFrame) / CLOCKS_PER_SEC;
 	}
 	break;
 
