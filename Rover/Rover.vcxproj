@@ -130,6 +130,7 @@
     <ClInclude Include="..\RESOURCE.H" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="ColorF.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="M33.h" />
