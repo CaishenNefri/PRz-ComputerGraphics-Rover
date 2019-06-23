@@ -18,11 +18,15 @@ public:
 	GLfloat zRot = 0.0f;
 	Rover *rover;
 
+	IScene()
+	{
+		rover = new Rover();
+	}
 
 	virtual ~IScene() = default;
 	void Init() override
 	{
-		rover = new Rover();
+		
 	}
 
 	void RenderScene()
