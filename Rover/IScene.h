@@ -4,7 +4,7 @@
 #include <windows.h>            // Window defines
 #include <gl\gl.h>              // OpenGL
 #include <gl\glu.h>             // GLU library
-#include "Rover.h"
+#include "RoverX.h"
 
 class IScene : public Entity
 {
@@ -16,11 +16,11 @@ public:
 	GLfloat xRot = 0.0f;
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
-	Rover *rover;
+	RoverX *rover;
 
 	IScene()
 	{
-		rover = new Rover();
+		rover = new RoverX();
 	}
 
 	virtual ~IScene() = default;

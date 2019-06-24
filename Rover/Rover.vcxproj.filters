@@ -36,6 +36,9 @@
     <Filter Include="Objects\Shapes">
       <UniqueIdentifier>{0bf689dc-8035-4966-9875-5b1be1f1f08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Rover">
+      <UniqueIdentifier>{91369ab7-426c-4955-9450-fac670ed7f54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -122,6 +125,15 @@
     </ClInclude>
     <ClInclude Include="Disc.h">
       <Filter>Objects\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>BaseObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="RoverX.h">
+      <Filter>Objects\Rover</Filter>
+    </ClInclude>
+    <ClInclude Include="WheelX.h">
+      <Filter>Objects\Rover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
