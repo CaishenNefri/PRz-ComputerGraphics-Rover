@@ -10,7 +10,7 @@ enum ShapeType
 	Line,
 	LineStrip,
 	Triangle,
-	TrangleStrip,
+	TriangleStrip,
 	TriangleFan,
 	Quad,
 	QuadStrip
@@ -33,6 +33,23 @@ public:
 	void AddPoint(Vec3 p, Vec2 t) { AddPoint(Vertex(p, Vec3::Zero(), t)); }
 	void AddPoint(Vec3 p, Vec3 n, Vec2 t) { AddPoint(Vertex(p, n, t)); }
 
+	void draw()
+	{
+
+		glColor3f(0,0,0);
+		//glBegin(Type);
+		begin(Type);
+		for (auto& s : Vertices)
+		{
+			GLfloat x, y, z;
+			x = s.Position.X;
+			y = s.Position.Y;
+			z = s.Position.Z;
+			glVertex3f(x,y,z);
+		}
+		glEnd();
+		glPopMatrix();
+	}
 
 	Shape* WithPosition(Vec3 pos) {
 		this->Origin = pos;
@@ -62,5 +79,18 @@ public:
 	Shape* WithType(ShapeType type) {
 		this->Type = type;
 		return this;
+	}
+
+	void begin(ShapeType type)
+	{
+		switch (type)
+		{
+		case ShapeType::TriangleStrip:
+			glBegin(GL_TRIANGLE_STRIP);
+			break;
+		case ShapeType::TriangleFan:
+			glBegin(GL_TRIANGLE_FAN);
+			break;
+		}
 	}
 };

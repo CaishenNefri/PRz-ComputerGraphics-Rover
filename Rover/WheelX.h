@@ -12,7 +12,7 @@ public:
 	WheelX(float r, float h) : R{ r }, H{ h }
 	{
 		int steps = 15;
-		float f 2 * M_PI / steps;
+		float f = 2 * M_PI / steps;
 		float r2 = r * 0.8;
 
 		

@@ -4,7 +4,8 @@
 #include <windows.h>            // Window defines
 #include <gl\gl.h>              // OpenGL
 #include <gl\glu.h>             // GLU library
-#include "RoverX.h"
+#include "Rover.h"
+#include "WheelX.h"
 
 class IScene : public Entity
 {
@@ -16,11 +17,15 @@ public:
 	GLfloat xRot = 0.0f;
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
-	RoverX *rover;
+	Rover *rover;
+	WheelX* wheel;
+	
 
 	IScene()
 	{
-		rover = new RoverX();
+		rover = new Rover();
+		wheel = new WheelX(50, 100);
+		wheel->WithScale(100);
 	}
 
 	virtual ~IScene() = default;
@@ -46,7 +51,12 @@ public:
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		//szescian();
-		rover->draw();
+		//rover->draw();
+		
+		for (auto a : wheel->Shapes)
+		{
+			a->draw();
+		}
 
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
