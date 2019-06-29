@@ -43,14 +43,14 @@ public:
 		for (auto& s : Vertices)
 		{			
 			GLfloat x, y, z;
-			x = s.Position.X * this->Scale.X;
-			y = s.Position.Y * this->Scale.Y;
-			z = s.Position.Z * this->Scale.Z;
+			x = this->Origin.X + s.Position.X * this->Scale.X;
+			y = this->Origin.Y + s.Position.Y * this->Scale.Y;
+			z = this->Origin.Z + s.Position.Z * this->Scale.Z;
 			glVertex3f(x,y,z);
 		}
 		glEnd();
 		
-		glPopMatrix();
+		/*glPopMatrix();*/
 	}
 
 	Shape* WithPosition(Vec3 pos) {

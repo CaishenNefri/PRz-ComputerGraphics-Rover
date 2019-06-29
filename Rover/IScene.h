@@ -17,6 +17,12 @@ public:
 	GLfloat xRot = 0.0f;
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
+	
+	// CAMERA
+	Vec3 cameraPos = Vec3(0, 0, 3);
+	Vec3 cameraFront = Vec3(0, 0, -1);
+	Vec3 cameraUp = Vec3(0, 1, 0);
+	
 	Rover *rover;
 	BodyX* body;
 
@@ -38,11 +44,10 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glPushMatrix();
 		// Enable rotate view | deprecatedd
-		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		/*glRotatef(xRot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-		glRotatef(zRot, 0.0f, 0.0f, 1.0f);
-
-
+		glRotatef(zRot, 0.0f, 0.0f, 1.0f);*/
+		
 
 		glPolygonMode(GL_FRONT_FACE, GLU_FILL);
 		glEnable(GL_BLEND);
@@ -51,9 +56,15 @@ public:
 		//szescian();
 		//rover->draw();
 		body->draw();
-
+		
+		  
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
+		//Vec3 temp = cameraPos + cameraFront;
+		glLoadIdentity(); //TODO: WHYY LEO WHYYY!!
+		gluLookAt(cameraPos.X, cameraPos.Y, cameraPos.Z,
+			cameraPos.X, cameraPos.Y, cameraPos.Z-1,
+			cameraUp.X, cameraUp.Y, cameraUp.Z);
 		glFlush(); // Flush drawing commands
 	}
 
@@ -183,5 +194,21 @@ public:
 
 		if (inputManager.IsDown('E'))
 			this->zRot += 5.0f;
+
+		if (inputManager.IsDown(VK_UP))
+			cameraPos += cameraFront;
+		if (inputManager.IsDown(VK_DOWN))
+			cameraPos -= cameraFront;	
+
+		if (inputManager.IsDown(VK_LEFT))
+			cameraPos -= Vec3::Normalized(Vec3::Cross(cameraFront, cameraUp));
+		if (inputManager.IsDown(VK_RIGHT))
+			cameraPos += Vec3::Normalized(Vec3::Cross(cameraFront, cameraUp));
+
+		if (inputManager.IsDown('O'))
+			cameraPos.Y += 5;
+		if (inputManager.IsDown('L'))
+			cameraPos.Y -= 5;
+
 	}
 };
