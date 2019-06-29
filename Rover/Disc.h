@@ -4,7 +4,7 @@
 class Disc : public Shape
 {
 public:
-	Disc(ColorF color, int steps = 10)
+	Disc(ColorF color = BLACK, int steps = 20)
 	{
 		this->Type = TriangleFan;
 		this->Color = color;

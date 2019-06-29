@@ -33,21 +33,23 @@ public:
 	void AddPoint(Vec3 p, Vec2 t) { AddPoint(Vertex(p, Vec3::Zero(), t)); }
 	void AddPoint(Vec3 p, Vec3 n, Vec2 t) { AddPoint(Vertex(p, n, t)); }
 
-	void draw()
+	virtual void draw()
 	{
 
 		glColor3f(0,0,0);
 		//glBegin(Type);
+		glRotatef(this->Rotation.W, this->Rotation.X, this->Rotation.Y, this->Rotation.Z);
 		begin(Type);
 		for (auto& s : Vertices)
-		{
+		{			
 			GLfloat x, y, z;
-			x = s.Position.X;
-			y = s.Position.Y;
-			z = s.Position.Z;
+			x = s.Position.X * this->Scale.X;
+			y = s.Position.Y * this->Scale.Y;
+			z = s.Position.Z * this->Scale.Z;
 			glVertex3f(x,y,z);
 		}
 		glEnd();
+		
 		glPopMatrix();
 	}
 
