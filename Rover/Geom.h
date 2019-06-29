@@ -10,6 +10,15 @@ public:
 	
 	Geom() = default;
 
+	virtual void draw()
+	{
+		for (auto c : Children)
+			for (auto s : c->Shapes)
+				s->draw();
+		for (auto s : Shapes)
+			s->draw();
+	}
+
 	void SetShapesOrigin(const Vec3 newOrigin) {
 		for (auto shape : Shapes)
 			shape->Origin = newOrigin;

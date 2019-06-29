@@ -141,5 +141,8 @@
     <ClInclude Include="Rect.h">
       <Filter>Objects\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="BodyX.h">
+      <Filter>Objects\Rover</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

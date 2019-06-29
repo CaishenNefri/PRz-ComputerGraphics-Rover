@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="..\RESOURCE.H" />
     <ClInclude Include="Body.h" />
+    <ClInclude Include="BodyX.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorF.h" />
     <ClInclude Include="Cuboid.h" />
