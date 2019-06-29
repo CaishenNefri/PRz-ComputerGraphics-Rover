@@ -5,7 +5,8 @@
 #include <gl\gl.h>              // OpenGL
 #include <gl\glu.h>             // GLU library
 #include "Rover.h"
-#include "Disc.h"
+//#include "Disc.h"
+#include "Rect.h"
 
 class IScene : public Entity
 {
@@ -18,14 +19,17 @@ public:
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
 	Rover *rover;
-	Disc* disc;
+	//Disc* disc;
+	Rect* rect;
 
 	IScene()
 	{
 		rover = new Rover();
-		disc = new Disc();
+		/*disc = new Disc();
 		disc->WithScale(20);
-		disc->WithRotation(Quat(0, 1, 0, 50));
+		disc->WithRotation(Quat(0, 1, 0, 50));*/
+		rect = new Rect();
+		rect->WithScale(Vec3(30,10,0));
 	}
 
 	virtual ~IScene() = default;
@@ -52,7 +56,8 @@ public:
 
 		//szescian();
 		//rover->draw();
-		disc->draw();
+		//disc->draw();
+		rect->draw();
 
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);

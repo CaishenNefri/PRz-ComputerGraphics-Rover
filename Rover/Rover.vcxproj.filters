@@ -135,5 +135,11 @@
     <ClInclude Include="WheelX.h">
       <Filter>Objects\Rover</Filter>
     </ClInclude>
+    <ClInclude Include="Cuboid.h">
+      <Filter>Objects\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Objects\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

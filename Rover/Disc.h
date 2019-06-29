@@ -9,7 +9,8 @@ public:
 		this->Type = TriangleFan;
 		this->Color = color;
 
-		this->AddPoint(Vec3(0, 0, 0), UP, Vec2(0.5, 0.5));
+		this->Origin = Vec3(0, 0, 0);
+		this->AddPoint(this->Origin, UP, Vec2(0.5, 0.5));
 
 		auto f = 2 * M_PI / steps;
 		for (auto i = 0; i <= steps; i++) {
