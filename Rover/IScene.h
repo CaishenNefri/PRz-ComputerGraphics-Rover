@@ -4,6 +4,7 @@
 #include <windows.h>            // Window defines
 #include <gl\gl.h>              // OpenGL
 #include <gl\glu.h>             // GLU library
+#include "Camera.h"
 #include "Rover.h"
 #include "BodyX.h"
 
@@ -13,21 +14,19 @@ public:
 	InputManager& inputManager = InputManager::GetInstance();
 
 	// Rotation amounts
-	// Rotate around 0,0,0
+	// Rotate arounds 0,0,0
 	GLfloat xRot = 0.0f;
 	GLfloat yRot = 0.0f;
 	GLfloat zRot = 0.0f;
 	
-	// CAMERA
-	Vec3 cameraPos = Vec3(0, 0, 3);
-	Vec3 cameraFront = Vec3(0, 0, -1);
-	Vec3 cameraUp = Vec3(0, 1, 0);
+	Camera* camera;
 	
 	Rover *rover;
 	BodyX* body;
 
 	IScene()
 	{
+		camera = new Camera();
 		rover = new Rover();
 		body = new BodyX();
 	}
@@ -44,9 +43,9 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glPushMatrix();
 		// Enable rotate view | deprecatedd
-		/*glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-		glRotatef(zRot, 0.0f, 0.0f, 1.0f);*/
+		glRotatef(zRot, 0.0f, 0.0f, 1.0f);
 		
 
 		glPolygonMode(GL_FRONT_FACE, GLU_FILL);
@@ -60,17 +59,15 @@ public:
 		  
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
-		//Vec3 temp = cameraPos + cameraFront;
 		glLoadIdentity(); //TODO: WHYY LEO WHYYY!!
-		gluLookAt(cameraPos.X, cameraPos.Y, cameraPos.Z,
-			cameraPos.X, cameraPos.Y, cameraPos.Z-1,
-			cameraUp.X, cameraUp.Y, cameraUp.Z);
+		camera->setLookAt();
 		glFlush(); // Flush drawing commands
 	}
 
 	void Update(float frameTime)
 	{
-		this->UpdateInputs();
+		this->UpdateInputs(frameTime);
+
 
 		// Rotate around 0,0,0
 		this->xRot = (const int)this->xRot % 360;
@@ -174,8 +171,9 @@ public:
 		}
 	}
 
-	void UpdateInputs()
+	void UpdateInputs(float frameTime)
 	{
+		camera->updateInputs(frameTime);
 		// Rotate around 0,0,0
 		if (inputManager.IsDown('W'))
 			this->xRot -= 5.0f;
@@ -194,21 +192,5 @@ public:
 
 		if (inputManager.IsDown('E'))
 			this->zRot += 5.0f;
-
-		if (inputManager.IsDown(VK_UP))
-			cameraPos += cameraFront;
-		if (inputManager.IsDown(VK_DOWN))
-			cameraPos -= cameraFront;	
-
-		if (inputManager.IsDown(VK_LEFT))
-			cameraPos -= Vec3::Normalized(Vec3::Cross(cameraFront, cameraUp));
-		if (inputManager.IsDown(VK_RIGHT))
-			cameraPos += Vec3::Normalized(Vec3::Cross(cameraFront, cameraUp));
-
-		if (inputManager.IsDown('O'))
-			cameraPos.Y += 5;
-		if (inputManager.IsDown('L'))
-			cameraPos.Y -= 5;
-
 	}
 };

@@ -144,5 +144,8 @@
     <ClInclude Include="BodyX.h">
       <Filter>Objects\Rover</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>BaseObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

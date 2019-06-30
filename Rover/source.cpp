@@ -295,7 +295,6 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_KEYDOWN:
 	{
 		inputManager.Update();
-		scene->UpdateInputs();
 
 		InvalidateRect(hWnd, NULL, FALSE);
 	}
