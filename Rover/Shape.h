@@ -36,21 +36,24 @@ public:
 	virtual void draw()
 	{
 
-		glColor3f(0,0,0);
-		//glBegin(Type);
-		glRotatef(this->Rotation.W, this->Rotation.X, this->Rotation.Y, this->Rotation.Z);
+		glPushMatrix();
+		glColor3fv(Color.rgba);
+		glTranslatef(Origin.X, Origin.Y, Origin.Z);
+		glScalef(Scale.X, Scale.Y, Scale.Z);
+		glRotatef(Rotation.W, Rotation.X, Rotation.Y, Rotation.Z);
+
 		begin(Type);
 		for (auto& s : Vertices)
 		{			
 			GLfloat x, y, z;
-			x = this->Origin.X + s.Position.X * this->Scale.X;
-			y = this->Origin.Y + s.Position.Y * this->Scale.Y;
-			z = this->Origin.Z + s.Position.Z * this->Scale.Z;
+			x =s.Position.X;
+			y =s.Position.Y;
+			z =s.Position.Z;
 			glVertex3f(x,y,z);
 		}
 		glEnd();
 		
-		/*glPopMatrix();*/
+		glPopMatrix();
 	}
 
 	Shape* WithPosition(Vec3 pos) {

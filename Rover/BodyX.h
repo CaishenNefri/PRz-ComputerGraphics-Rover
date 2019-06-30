@@ -24,15 +24,21 @@ public:
 		faceU = new Rect();
 		faceD = new Rect();
 
-		faceF->WithPosition(Vec3(0, 0, -depth / 2))
+		faceF->WithPosition(Vec3(0, 0, depth / 2))
 			 ->WithScale(Vec3(width,height,0));
 
-		faceB->WithPosition(Vec3(0, 0, depth / 2))
+		faceB->WithPosition(Vec3(0, 0, -depth / 2))
+			->WithColor(RED)
 			->WithScale(Vec3(width, height, 0));
 
+		faceR->WithColor(BLUE)
+			->WithRotation(Quat(0, 1 , 0, 50))
+			->WithPosition(Vec3(width / 2, 0, 0))
+			->WithScale(Vec3(depth, height, 0));
 
 		this->Shapes.push_back(faceF);
 		this->Shapes.push_back(faceB);
+		this->Shapes.push_back(faceR);
 	
 	}
 };

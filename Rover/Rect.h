@@ -9,7 +9,7 @@ public:
 		this->Type = TriangleStrip;
 		this->Color = color;
 		this->Origin = Vec3(0, 0, 0);
-		float height = 1, width = 1;
+		float height = 1, width = 1, depth=1;
 		
 		Vec3 sPoint = Vec3(this->Origin.X - width/2,
 							   this->Origin.Y + height/2,
