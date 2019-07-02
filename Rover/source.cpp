@@ -421,15 +421,15 @@ void RenderScene(void)
 
 	GLdouble collision = 80;
 
-	if ((keys['K'] && keys['I']) == 0)
+	if ((keys['I'] && keys['K']) == 0)
 		speed = 0;
-	if (keys['K']) {
+	if (keys['I']) {
 		if (speed < 30)
 			speed += 8;
 	}
 
 
-	if (keys['I']) {
+	if (keys['K']) {
 		speed = 0;
 		speed -= 5;
 	}
