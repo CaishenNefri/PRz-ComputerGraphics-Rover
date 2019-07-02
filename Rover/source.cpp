@@ -326,8 +326,8 @@ GLfloat rot[] = { 0,1,0,0 };
 GLfloat rot2[] = { 0,0,0,0 };
 
 GLfloat pos1[3] = { 0,0,-25 };
-GLfloat pos2[3] = { 80,400, 0 };
-GLfloat pos3[3] = { -320,-800, 40 };
+GLfloat pos2[3] = { -90,-600, -20 };
+GLfloat pos3[3] = { 320,-500, -10 };
 
 GLfloat color1[3] = { 0.8,0.8,0.8 };
 GLfloat color2[3] = { 0.8,0.59,0.07 };
@@ -335,8 +335,8 @@ GLfloat color3[3] = { 0.8,0.9,0.7 };
 
 
 auto terrain = new object{ &textures[0], "mars.obj", color1, pos1, rot, 20 };
-auto rock = new object{ &textures[1], "well.obj", color2,pos2,rot2,1 };
-auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,1 };
+auto rock = new object{ &textures[1], "well.obj", color2,pos2,rot2,10 };
+auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,10 };
 
 auto camera = new Camera{};
 void RenderScene(void)
@@ -421,15 +421,15 @@ void RenderScene(void)
 
 	GLdouble collision = 80;
 
-	if ((keys['I'] && keys['K']) == 0)
+	if ((keys['K'] && keys['I']) == 0)
 		speed = 0;
-	if (keys['I']) {
+	if (keys['K']) {
 		if (speed < 30)
 			speed += 8;
 	}
 
 
-	if (keys['K']) {
+	if (keys['I']) {
 		speed = 0;
 		speed -= 5;
 	}
