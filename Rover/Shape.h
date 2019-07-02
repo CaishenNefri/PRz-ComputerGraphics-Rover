@@ -39,16 +39,16 @@ public:
 		glPushMatrix();
 		glColor3fv(Color.rgba);
 		glTranslatef(Origin.X, Origin.Y, Origin.Z);
-		glScalef(Scale.X, Scale.Y, Scale.Z);
+		//glScalef(Scale.X, Scale.Y, Scale.Z);
 		glRotatef(Rotation.W, Rotation.X, Rotation.Y, Rotation.Z);
 
 		begin(Type);
 		for (auto& s : Vertices)
 		{			
 			GLfloat x, y, z;
-			x =s.Position.X;
-			y =s.Position.Y;
-			z =s.Position.Z;
+			x =s.Position.X * Scale.X;
+			y =s.Position.Y * Scale.Y;
+			z =s.Position.Z * Scale.Z;
 			glVertex3f(x,y,z);
 		}
 		glEnd();

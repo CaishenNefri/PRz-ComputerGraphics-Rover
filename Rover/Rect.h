@@ -15,7 +15,7 @@ public:
 							   this->Origin.Y + height/2,
 							   this->Origin.Z);
 		
-		for (int h = 0; h<hSteps-1; h++)
+		for (int h = 0; h < hSteps-1; h++)
 			for (int w = 0; w < wSteps; w++)
 			{
 				Vec3 a = Vec3(

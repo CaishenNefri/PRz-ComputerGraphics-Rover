@@ -32,9 +32,9 @@ public:
 			->WithScale(Vec3(width, height, 0));
 
 		faceR->WithColor(BLUE)
-			->WithRotation(Quat(0, 1 , 0, 50))
+			->WithRotation(Quat(0, 1 , 0, 90))
 			->WithPosition(Vec3(width / 2, 0, 0))
-			->WithScale(Vec3(depth, height, 0));
+			->WithScale(Vec3(depth, height,0));
 
 		this->Shapes.push_back(faceF);
 		this->Shapes.push_back(faceB);
