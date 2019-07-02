@@ -325,7 +325,7 @@ Rover rover;
 GLfloat rot[] = { 0,1,0,0 };
 GLfloat rot2[] = { 0,0,0,0 };
 
-GLfloat pos1[3] = { 0,0,-5 };
+GLfloat pos1[3] = { 0,0,-25 };
 GLfloat pos2[3] = { 80,400, 0 };
 GLfloat pos3[3] = { -320,-800, 40 };
 
@@ -419,7 +419,7 @@ void RenderScene(void)
 	GLdouble odl1 = sqrt(pow(chX - pos2[0], 2) + pow(chZ - pos2[1], 2));
 	GLdouble odl2 = sqrt(pow(chX - pos3[0], 2) + pow(chZ - pos3[1], 2));
 
-	GLdouble collision = 15;
+	GLdouble collision = 80;
 
 	if ((keys['I'] && keys['K']) == 0)
 		speed = 0;

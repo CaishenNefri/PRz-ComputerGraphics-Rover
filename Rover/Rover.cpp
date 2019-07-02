@@ -4,7 +4,7 @@
 
 Rover::Rover()
 {
-	int scale = 20;
+	int scale = 1;
 
 	amountWheels = 3;
 	sizeWheel = 20 / scale;
