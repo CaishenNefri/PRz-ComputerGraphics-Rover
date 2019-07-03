@@ -315,7 +315,7 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 bool keys[256];
 static GLdouble beginX = 0;
 static GLdouble beginZ = 0;
-static GLdouble tZ = 0;
+static GLdouble dZ = 0;
 static GLdouble tX = 0;
 static GLdouble tZ = 0;
 static GLdouble speed = 0;
@@ -386,10 +386,11 @@ void RenderScene(void)
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
+
 	glPushMatrix();
 	glTranslatef(tX, 0.0, tZ); // 3. Translate to the object's position.
 	glRotatef(beginX, 1.0, 0.0, 0.0); // 2. Rotate the object.
-	glRotatef(beginZ + tZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
+	glRotatef(beginZ + dZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
 	rover.draw();
 	glPopMatrix();
 
@@ -404,14 +405,14 @@ void RenderScene(void)
 
 	if (keys['4']) {
 		if (keys['4'] && keys['5'])
-			tZ -= 2;
-		else tZ += 2;
+			dZ -= 2;
+		else dZ += 2;
 	}
 
 	if (keys['6']) {
 		if (keys['6'] && keys['5'])
-			tZ += 2;
-		else tZ -= 2;
+			dZ += 2;
+		else dZ -= 2;
 	}
 
 	//odleglosci od obiektow
@@ -434,8 +435,8 @@ void RenderScene(void)
 	}
 
 
-	GLdouble addX = sin((beginZ + tZ + 90)*GL_PI / 180) * speed;
-	GLdouble addZ = cos((beginZ + tZ + 90)*GL_PI / 180) * speed;
+	GLdouble addX = sin((beginZ + dZ + 90)*GL_PI / 180) * speed;
+	GLdouble addZ = cos((beginZ + dZ + 90)*GL_PI / 180) * speed;
 
 
 
