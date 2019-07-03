@@ -188,10 +188,10 @@ void ChangeSize(GLsizei w, GLsizei h)
 	else
 		glOrtho(-nRange * w / h, nRange*w / h, -nRange, nRange, -nRange, nRange);
 */
-	// Establish perspective: 
-	
-	gluPerspective(90.0f,fAspect,10.0,nRange);
-	
+// Establish perspective: 
+
+	gluPerspective(90.0f, fAspect, 10.0, nRange);
+
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -207,9 +207,9 @@ void SetupRC()
 	// Light values and coordinates
 	GLfloat  ambientLight[] = { 0.3f, 0.3f, 0.3f, 1.0f };
 	GLfloat  diffuseLight[] = { 0.7f, 0.7f, 0.7f, 1.0f };
-	GLfloat  specular[] = { 1.0f, 1.0f, 1.0f, 1.0f};
+	GLfloat  specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	GLfloat	 lightPos[] = { 60.0f, -1500.0f, 20.0f, 1.0f };
-	GLfloat  specref[] =  { 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat  specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 
 	glEnable(GL_DEPTH_TEST);	// Hidden surface removal
@@ -220,10 +220,10 @@ void SetupRC()
 	glEnable(GL_LIGHTING);
 
 	// Setup and enable light 0
-	glLightfv(GL_LIGHT0,GL_AMBIENT,ambientLight);
-	glLightfv(GL_LIGHT0,GL_DIFFUSE,diffuseLight);
-	glLightfv(GL_LIGHT0,GL_SPECULAR,specular);
-	glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	glEnable(GL_LIGHT0);
 
 	// Enable color tracking
@@ -234,8 +234,8 @@ void SetupRC()
 
 	// All materials hereafter have full specular reflectivity
 	// with a high shine
-	glMaterialfv(GL_FRONT, GL_SPECULAR,specref);
-	glMateriali(GL_FRONT,GL_SHININESS,40);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+	glMateriali(GL_FRONT, GL_SHININESS, 40);
 
 
 	// White background
@@ -312,16 +312,22 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 	fclose(filePtr);
 	return bitmapImage;
 }
+bool keys[256];
+static GLdouble beginX = 0;
+static GLdouble beginZ = 0;
+static GLdouble dZ = 0;
+static GLdouble tX = 0;
+static GLdouble tZ = 0;
+static GLdouble speed = 0;
 
-auto camera = new Camera{};
 
 Rover rover;
 GLfloat rot[] = { 0,1,0,0 };
 GLfloat rot2[] = { 0,0,0,0 };
 
-GLfloat pos1[3] = { 0,0,-5 };
-GLfloat pos2[3] = { 80,400, 0};
-GLfloat pos3[3] = { -320,-800, 40 };
+GLfloat pos1[3] = { 0,0,-25 };
+GLfloat pos2[3] = { -90,-600, -20 };
+GLfloat pos3[3] = { 320,-500, -10 };
 
 GLfloat color1[3] = { 0.8,0.8,0.8 };
 GLfloat color2[3] = { 0.8,0.59,0.07 };
@@ -329,9 +335,10 @@ GLfloat color3[3] = { 0.8,0.9,0.7 };
 
 
 auto terrain = new object{ &textures[0], "mars.obj", color1, pos1, rot, 20 };
-auto rock = new object{ &textures[1], "rock.obj", color2,pos2,rot2,10 };
-auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,1 };
+auto rock = new object{ &textures[1], "well.obj", color2,pos2,rot2,10 };
+auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,10 };
 
+auto camera = new Camera{};
 void RenderScene(void)
 {
 	//float normal[3];	// Storeage for calculated surface normal
@@ -350,10 +357,10 @@ void RenderScene(void)
 	/////////////////////////////////////////////////////////////////
 	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
 	/////////////////////////////////////////////////////////////////
-	
+
 	//Sposób na odróŸnienie "przedniej" i "tylniej" œciany wielok¹ta:
 	//glPolygonMode(GL_BACK, GL_LINE);
-	
+
 	//teren();
 	glPushMatrix();
 	glEnable(GL_TEXTURE_2D);
@@ -379,15 +386,74 @@ void RenderScene(void)
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
-	
+
+	glPushMatrix();
+	glTranslatef(tX, 0.0, tZ); // 3. Translate to the object's position.
+	glRotatef(beginX, 1.0, 0.0, 0.0); // 2. Rotate the object.
+	glRotatef(beginZ + dZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
 	rover.draw();
-	
-	
+	glPopMatrix();
+
+
+
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 
 	// Flush drawing commands
 	glFlush();
+
+
+	if (keys['4']) {
+		if (keys['4'] && keys['5'])
+			dZ -= 2;
+		else dZ += 2;
+	}
+
+	if (keys['6']) {
+		if (keys['6'] && keys['5'])
+			dZ += 2;
+		else dZ -= 2;
+	}
+
+	//odleglosci od obiektow
+	GLdouble odl1 = sqrt(pow(tX - pos2[0], 2) + pow(tZ - pos2[1], 2));
+	GLdouble odl2 = sqrt(pow(tX - pos3[0], 2) + pow(tZ - pos3[1], 2));
+
+	GLdouble collision = 80;
+
+	if ((keys['8'] && keys['5']) == 0)
+		speed = 0;
+	if (keys['8']) {
+		if (speed < 30)
+			speed += 8;
+	}
+
+
+	if (keys['5']) {
+		speed = 0;
+		speed -= 5;
+	}
+
+
+	GLdouble addX = sin((beginZ + dZ + 90)*GL_PI / 180) * speed;
+	GLdouble addZ = cos((beginZ + dZ + 90)*GL_PI / 180) * speed;
+
+
+
+	if (odl1 >= collision && odl2 >= collision) {
+		tX += addX;
+		tZ += addZ;
+	}
+	else {
+		speed = 0;
+		GLdouble odl11 = sqrt(pow(tX + addX - pos2[0], 2) + pow(tZ + addZ - pos2[1], 2));
+		GLdouble odl21 = sqrt(pow(tX + addX - pos3[0], 2) + pow(tZ + addZ - pos3[1], 2));
+		if (odl11 >= odl1 && odl21 >= odl2) {
+			tX += addX;
+			tZ += addZ;
+		}
+	}
+
 }
 
 
@@ -598,7 +664,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		textures[0] = LoadTexture("terr.png", 1);
 		textures[1] = LoadTexture("rock.png", 1);
 		textures[2] = LoadTexture("rock2.png", 1);
-	
+
 
 		// ustalenie sposobu mieszania tekstury z t³em
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -685,10 +751,50 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 		}
 		break;
 
-		// Key press, check for arrow keys to do cube rotation.
+
+	case WM_KEYUP:
+	{
+		if (wParam == VK_NUMPAD4) {
+			keys['4'] = false;
+		}
+
+		if (wParam == VK_NUMPAD6) {
+			keys['6'] = false;
+		}
+
+		if (wParam == VK_NUMPAD5) {
+			keys['5'] = false;
+		}
+
+		if (wParam == VK_NUMPAD8) {
+			keys['8'] = false;
+		}
+		if (wParam == VK_NUMPAD0) {
+			keys['0'] = false;
+		}
+	}
+	break;
+
+	// Key press, check for arrow keys to do cube rotation.
 	case WM_KEYDOWN:
 	{
 		camera->update(wParam);
+
+		if (wParam == VK_NUMPAD4) {
+			keys['4'] = true;
+		}
+
+		if (wParam == VK_NUMPAD6) {
+			keys['6'] = true;
+		}
+
+		if (wParam == VK_NUMPAD5) {
+			keys['5'] = true;
+		}
+
+		if (wParam == VK_NUMPAD8) {
+			keys['8'] = true;
+		}
 
 
 		xRot = (const int)xRot % 360;
