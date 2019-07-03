@@ -313,11 +313,11 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 	return bitmapImage;
 }
 bool keys[256];
-static GLdouble startX = 0;
-static GLdouble startZ = 0;
-static GLdouble doZ = 0;
-static GLdouble chX = 0;
-static GLdouble chZ = 0;
+static GLdouble beginX = 0;
+static GLdouble beginZ = 0;
+static GLdouble tZ = 0;
+static GLdouble tX = 0;
+static GLdouble tZ = 0;
 static GLdouble speed = 0;
 
 
@@ -386,11 +386,10 @@ void RenderScene(void)
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
-	// TU ZMIENIC ¯EBY NIE BY£O chX ! ITD BO TAK MAMY, 
 	glPushMatrix();
-	glTranslatef(chX, 0.0, chZ); // 3. Translate to the object's position.
-	glRotatef(startX, 1.0, 0.0, 0.0); // 2. Rotate the object.
-	glRotatef(startZ + doZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
+	glTranslatef(tX, 0.0, tZ); // 3. Translate to the object's position.
+	glRotatef(beginX, 1.0, 0.0, 0.0); // 2. Rotate the object.
+	glRotatef(beginZ + tZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
 	rover.draw();
 	glPopMatrix();
 
@@ -405,19 +404,19 @@ void RenderScene(void)
 
 	if (keys['4']) {
 		if (keys['4'] && keys['5'])
-			doZ -= 2;
-		else doZ += 2;
+			tZ -= 2;
+		else tZ += 2;
 	}
 
 	if (keys['6']) {
 		if (keys['6'] && keys['5'])
-			doZ += 2;
-		else doZ -= 2;
+			tZ += 2;
+		else tZ -= 2;
 	}
 
 	//odleglosci od obiektow
-	GLdouble odl1 = sqrt(pow(chX - pos2[0], 2) + pow(chZ - pos2[1], 2));
-	GLdouble odl2 = sqrt(pow(chX - pos3[0], 2) + pow(chZ - pos3[1], 2));
+	GLdouble odl1 = sqrt(pow(tX - pos2[0], 2) + pow(tZ - pos2[1], 2));
+	GLdouble odl2 = sqrt(pow(tX - pos3[0], 2) + pow(tZ - pos3[1], 2));
 
 	GLdouble collision = 80;
 
@@ -435,22 +434,22 @@ void RenderScene(void)
 	}
 
 
-	GLdouble addX = sin((startZ + doZ + 90)*GL_PI / 180) * speed;
-	GLdouble addZ = cos((startZ + doZ + 90)*GL_PI / 180) * speed;
+	GLdouble addX = sin((beginZ + tZ + 90)*GL_PI / 180) * speed;
+	GLdouble addZ = cos((beginZ + tZ + 90)*GL_PI / 180) * speed;
 
 
 
 	if (odl1 >= collision && odl2 >= collision) {
-		chX += addX;
-		chZ += addZ;
+		tX += addX;
+		tZ += addZ;
 	}
 	else {
 		speed = 0;
-		GLdouble odl11 = sqrt(pow(chX + addX - pos2[0], 2) + pow(chZ + addZ - pos2[1], 2));
-		GLdouble odl21 = sqrt(pow(chX + addX - pos3[0], 2) + pow(chZ + addZ - pos3[1], 2));
+		GLdouble odl11 = sqrt(pow(tX + addX - pos2[0], 2) + pow(tZ + addZ - pos2[1], 2));
+		GLdouble odl21 = sqrt(pow(tX + addX - pos3[0], 2) + pow(tZ + addZ - pos3[1], 2));
 		if (odl11 >= odl1 && odl21 >= odl2) {
-			chX += addX;
-			chZ += addZ;
+			tX += addX;
+			tZ += addZ;
 		}
 	}
 
