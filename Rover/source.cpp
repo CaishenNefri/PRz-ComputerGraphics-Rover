@@ -403,14 +403,14 @@ void RenderScene(void)
 	glFlush();
 
 
-	if (keys['J']) {
-		if (keys['J'] && keys['K'])
+	if (keys['4']) {
+		if (keys['4'] && keys['5'])
 			doZ -= 2;
 		else doZ += 2;
 	}
 
-	if (keys['L']) {
-		if (keys['L'] && keys['K'])
+	if (keys['6']) {
+		if (keys['6'] && keys['5'])
 			doZ += 2;
 		else doZ -= 2;
 	}
@@ -421,15 +421,15 @@ void RenderScene(void)
 
 	GLdouble collision = 80;
 
-	if ((keys['I'] && keys['K']) == 0)
+	if ((keys['8'] && keys['5']) == 0)
 		speed = 0;
-	if (keys['I']) {
+	if (keys['8']) {
 		if (speed < 30)
 			speed += 8;
 	}
 
 
-	if (keys['K']) {
+	if (keys['5']) {
 		speed = 0;
 		speed -= 5;
 	}
@@ -754,23 +754,23 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 
 	case WM_KEYUP:
 	{
-		if (wParam == 'J') {
-			keys['J'] = false;
+		if (wParam == VK_NUMPAD4) {
+			keys['4'] = false;
 		}
 
-		if (wParam == 'L') {
-			keys['L'] = false;
+		if (wParam == VK_NUMPAD6) {
+			keys['6'] = false;
 		}
 
-		if (wParam == 'K') {
-			keys['K'] = false;
+		if (wParam == VK_NUMPAD5) {
+			keys['5'] = false;
 		}
 
-		if (wParam == 'I') {
-			keys['I'] = false;
+		if (wParam == VK_NUMPAD8) {
+			keys['8'] = false;
 		}
-		if (wParam == 'B') {
-			keys['B'] = false;
+		if (wParam == VK_NUMPAD0) {
+			keys['0'] = false;
 		}
 	}
 	break;
@@ -780,20 +780,20 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	{
 		camera->update(wParam);
 
-		if (wParam == 'J') {
-			keys['J'] = true;
+		if (wParam == VK_NUMPAD4) {
+			keys['4'] = true;
 		}
 
-		if (wParam == 'L') {
-			keys['L'] = true;
+		if (wParam == VK_NUMPAD6) {
+			keys['6'] = true;
 		}
 
-		if (wParam == 'K') {
-			keys['K'] = true;
+		if (wParam == VK_NUMPAD5) {
+			keys['5'] = true;
 		}
 
-		if (wParam == 'I') {
-			keys['I'] = true;
+		if (wParam == VK_NUMPAD8) {
+			keys['8'] = true;
 		}
 
 
