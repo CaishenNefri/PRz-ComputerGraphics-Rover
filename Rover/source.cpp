@@ -35,7 +35,6 @@
 #include "Wheel.h"
 #include "Box.h"
 #include "Lamp.h"
-#include "Roller.h"
 #include "Rover.h"
 #include "Camera.h"
 #include "object.h"
@@ -335,8 +334,8 @@ GLfloat color3[3] = { 0.8,0.9,0.7 };
 
 
 auto terrain = new object{ &textures[0], "mars.obj", color1, pos1, rot, 20 };
-auto rock = new object{ &textures[1], "well.obj", color2,pos2,rot2,10 };
-auto well = new object{ &textures[2], "well.obj", color3, pos3,rot2,10 };
+auto rock = new object{ &textures[1], "plant.obj", color2,pos2,rot2,10 };
+auto well = new object{ &textures[2], "plant.obj", color3, pos3,rot2,10 };
 
 auto camera = new Camera{};
 void RenderScene(void)
@@ -388,38 +387,15 @@ void RenderScene(void)
 
 
 	glPushMatrix();
-	glTranslatef(tX, 0.0, tZ); // 3. Translate to the object's position.
-	glRotatef(beginX, 1.0, 0.0, 0.0); // 2. Rotate the object.
-	glRotatef(beginZ + dZ, 0.0, 1.0, 0.0); // 2. Rotate the object.
+	glTranslatef(tX, 0.0, tZ); 
+	glRotatef(beginX, 1.0, 0.0, 0.0); 
+	glRotatef(beginZ + dZ, 0.0, 1.0, 0.0); 
 	rover.draw();
 	glPopMatrix();
-
-
-
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 
-	// Flush drawing commands
 	glFlush();
-
-
-	if (keys['4']) {
-		if (keys['4'] && keys['5'])
-			dZ -= 2;
-		else dZ += 2;
-	}
-
-	if (keys['6']) {
-		if (keys['6'] && keys['5'])
-			dZ += 2;
-		else dZ -= 2;
-	}
-
-	//odleglosci od obiektow
-	GLdouble odl1 = sqrt(pow(tX - pos2[0], 2) + pow(tZ - pos2[1], 2));
-	GLdouble odl2 = sqrt(pow(tX - pos3[0], 2) + pow(tZ - pos3[1], 2));
-
-	GLdouble collision = 80;
 
 	if ((keys['8'] && keys['5']) == 0)
 		speed = 0;
@@ -427,12 +403,31 @@ void RenderScene(void)
 		if (speed < 30)
 			speed += 8;
 	}
-
+	if (keys['6']) {
+		if (keys['6'] && keys['5'])
+			dZ += 2;
+		else dZ -= 2;
+	}
 
 	if (keys['5']) {
 		speed = 0;
 		speed -= 5;
 	}
+
+	if (keys['4']) {
+		if (keys['4'] && keys['5'])
+			dZ -= 2;
+		else dZ += 2;
+	}
+
+
+
+	GLdouble dis1 = sqrt(pow(tX - pos2[0], 2) + pow(tZ - pos2[1], 2));
+	GLdouble dis2 = sqrt(pow(tX - pos3[0], 2) + pow(tZ - pos3[1], 2));
+
+	GLdouble disToCollision = 80;
+
+
 
 
 	GLdouble addX = sin((beginZ + dZ + 90)*GL_PI / 180) * speed;
@@ -440,15 +435,15 @@ void RenderScene(void)
 
 
 
-	if (odl1 >= collision && odl2 >= collision) {
+	if (dis1 >= disToCollision && dis2 >= disToCollision) {
 		tX += addX;
 		tZ += addZ;
 	}
 	else {
 		speed = 0;
-		GLdouble odl11 = sqrt(pow(tX + addX - pos2[0], 2) + pow(tZ + addZ - pos2[1], 2));
-		GLdouble odl21 = sqrt(pow(tX + addX - pos3[0], 2) + pow(tZ + addZ - pos3[1], 2));
-		if (odl11 >= odl1 && odl21 >= odl2) {
+		GLdouble dis11 = sqrt(pow(tX + addX - pos2[0], 2) + pow(tZ + addZ - pos2[1], 2));
+		GLdouble dis21 = sqrt(pow(tX + addX - pos3[0], 2) + pow(tZ + addZ - pos3[1], 2));
+		if (dis11 >= dis1 && dis21 >= dis2) {
 			tX += addX;
 			tZ += addZ;
 		}
